@@ -1,0 +1,63 @@
+{
+  "activeAlerts": [],
+  "current": {
+    "cameraConfidence": 0.06,
+    "doorOpen": false,
+    "doorOpenedAt": null,
+    "fallDetected": false,
+    "gasPpm": 128,
+    "humidity": 42,
+    "lightLevelLux": 239,
+    "motionDetected": false,
+    "personExited": false,
+    "smokePpm": 9,
+    "stoveOn": false,
+    "temperatureC": 25.4
+  },
+  "devices": {
+    "camera-module": {
+      "id": "camera-module",
+      "label": "Kamera Modulu",
+      "online": false,
+      "source": "camera",
+      "lastPayloadAt": "2026-05-17T14:16:54.636679+00:00",
+      "lastSeenAt": "2026-05-17T14:16:54.636679+00:00"
+    },
+    "esp32-main": {
+      "id": "esp32-main",
+      "label": "ESP32 Sensor Hub",
+      "online": false,
+      "source": "esp32",
+      "lastPayloadAt": "2026-05-17T14:16:57.687918+00:00",
+      "lastSeenAt": "2026-05-17T14:16:57.687918+00:00"
+    },
+    "raspberry-pi-4": {
+      "id": "raspberry-pi-4",
+      "label": "Raspberry Pi 4",
+      "online": false,
+      "source": "raspberry-pi",
+      "lastPayloadAt": "2026-05-17T14:16:57.690006+00:00",
+      "lastSeenAt": "2026-05-17T14:16:57.690006+00:00"
+    }
+  },
+  "meta": {
+    "flags": {
+      "darkMotion": false,
+      "doorOpenLong": false,
+      "fall": false,
+      "gas": false,
+      "temperature": false
+    },
+    "lastIngestAt": "2026-05-17T14:16:57.690006+00:00",
+    "lastScenario": "normal",
+    "lastStateWriteAt": "2026-05-17T16:26:32.554Z"
+  },
+  "summary": {
+    "doorOpenDurationSec": 0,
+    "emergencyLightOn": false,
+    "lastExitAt": "2026-05-17T14:16:47.669313+00:00",
+    "lastUpdateAt": "2026-05-17T14:16:57.690006+00:00",
+    "overallStatus": "normal",
+    "statusMessage": "Tum sistemler normal gorunuyor."
+  }
+}

@@ -779,7 +779,7 @@
 
       <section id="auth" class="auth hidden" aria-label="Kullanici Girisi">
         <div class="auth-inner">
-          <div class="auth-title">Kullanici Giris Ekrani</div>
+          <div class="auth-title">Vasi Giris Paneli</div>
           <div class="auth-logo">
             <img src="assets/byts-logo.jpg" alt="BYTS Logo" />
             <div class="auth-subtitle">Bireysel Yasam Takip Sistemi</div>
@@ -829,8 +829,8 @@
           </div>
 
           <div id="forgotPanel" class="register-panel hidden" aria-label="Sifre Sifirlama Formu">
-            <h3>Sifremi Unuttum</h3>
-            <p>Once kayitli SMS veya e-posta adresine gidecek kodu iste, sonra gelen kodla yeni sifreni belirle.</p>
+            <h3>Sifre Yenileme</h3>
+            <p>Kayitli bilgilerle kimligini dogrula. Sistem gereken durumda SMS veya e-posta kodu kullanir, uygun oldugunda guvenli sifre yenileme adimina dogrudan gecis yapar.</p>
 
             <div id="forgotStepRequest">
               <div class="register-grid">
@@ -868,7 +868,7 @@
               <div id="forgotMeta" class="forgot-meta" aria-live="polite"></div>
 
               <div class="register-grid">
-                <div class="field full">
+                <div id="forgotCodeField" class="field full">
                   <div class="field-row no-icon">
                     <input id="forgotCode" type="text" placeholder="6 Haneli Dogrulama Kodu" inputmode="numeric" autocomplete="one-time-code" />
                   </div>
@@ -892,8 +892,8 @@
               <div id="forgotMessage" class="register-message" aria-live="polite"></div>
               <div class="action-group">
                 <button id="forgotCancelBtn" class="btn btn-ghost" type="button">Kapat</button>
-                <button id="forgotRequestBtn" class="btn btn-primary" type="button">KOD GONDER</button>
-                <button id="forgotResendBtn" class="btn btn-ghost hidden" type="button">KODU YENIDEN GONDER</button>
+                <button id="forgotRequestBtn" class="btn btn-primary" type="button">DOGRULAMAYI BASLAT</button>
+                <button id="forgotResendBtn" class="btn btn-ghost hidden" type="button">TEKRAR DOGRULA</button>
                 <button id="forgotSubmitBtn" class="btn btn-primary hidden" type="button">SIFREYI GUNCELLE</button>
               </div>
             </div>

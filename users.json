@@ -1,0 +1,12 @@
+[
+  {
+    "createdAt": "2026-05-17T09:30:00.000Z",
+    "displayName": "Birincil Vasi",
+    "email": "vasi@bytswebappcom.website",
+    "passwordHash": "5fc52cde88f71f286b432b1cdd73240be2e7b57e9d47ee7b8bdeda4b5fac8ab9",
+    "phone": "+90 555 000 00 00",
+    "relation": "Aile Yakini",
+    "role": "caretaker",
+    "username": "vasi"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "notifications": {
+    "door": true,
+    "fall": true,
+    "gas": true,
+    "motion": true,
+    "temperature": true
+  },
+  "thresholds": {
+    "darkLux": 80,
+    "doorOpenTooLongSec": 90,
+    "gasHighPpm": 420,
+    "smokeHighPpm": 120,
+    "temperatureHighC": 30
+  },
+  "caretaker": {
+    "name": "Birincil Vasi",
+    "phone": "+90 555 000 00 00",
+    "relation": "Aile Yakini"
+  }
+}

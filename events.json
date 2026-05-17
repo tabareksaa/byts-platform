@@ -1,0 +1,2678 @@
+[
+  {
+    "id": "evt_1779027414640_8392eb8a",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:16:54.640Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779027407681_10d43e66",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:16:47.681Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027407677_085f7465",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:16:47.678Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027404623_7fb4e32d",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:16:44.623Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027404622_f7ad051a",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:16:44.622Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779027384578_8bed4e8a",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 118,
+      "lightLevelLux": 18,
+      "smokePpm": 8,
+      "temperatureC": 24.2
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:16:24.578Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779027364535_a8f507c6",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:16:04.535Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779027354513_13a9ecb6",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 110,
+      "lightLevelLux": 246,
+      "smokePpm": 11,
+      "temperatureC": 25.6
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:15:54.516Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779027344474_317b7965",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:15:44.475Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779027334453_23b8e203",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 226,
+      "smokePpm": 180,
+      "temperatureC": 24.1
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:15:34.453Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779027324436_2ffa1db2",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:15:24.436Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779027317535_bd123255",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:15:17.535Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027317489_de022344",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:15:17.489Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027314420_80a45814",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:15:14.420Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027314419_e3affc37",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:15:14.420Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779027294376_cb7a72e4",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 113,
+      "lightLevelLux": 18,
+      "smokePpm": 9,
+      "temperatureC": 24.7
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:14:54.383Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779027274338_2c9cee0f",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:14:34.338Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779027264325_37d4767e",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 110,
+      "lightLevelLux": 248,
+      "smokePpm": 9,
+      "temperatureC": 24.5
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:14:24.325Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779027254310_81b3fd82",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:14:14.310Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779027244293_b4a6ea9b",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 206,
+      "smokePpm": 180,
+      "temperatureC": 24.6
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:14:04.293Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779027234280_21419bf4",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:13:54.280Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779027227420_b05328f4",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:13:47.420Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027227343_b5e08008",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:13:47.343Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027224265_e4415e26",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:13:44.265Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027224265_c0971858",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:13:44.265Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779027204241_09bbd095",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 91,
+      "lightLevelLux": 18,
+      "smokePpm": 9,
+      "temperatureC": 25.6
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:13:24.241Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779027184212_7fd9078c",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:13:04.212Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779027174202_0d018661",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 98,
+      "lightLevelLux": 208,
+      "smokePpm": 9,
+      "temperatureC": 24
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:12:54.202Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779027164189_e43a319d",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:12:44.189Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779027154178_03a7a13f",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 220,
+      "smokePpm": 180,
+      "temperatureC": 25.3
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:12:34.178Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779027144169_ae7204f5",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:12:24.169Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779027137237_d9fba515",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:12:17.237Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027137232_bfaea77f",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:12:17.232Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027134155_821de3ce",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:12:14.155Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027134155_c826bf5f",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:12:14.155Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779027114120_2f01b09b",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 104,
+      "lightLevelLux": 18,
+      "smokePpm": 6,
+      "temperatureC": 23.7
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:11:54.121Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779027094090_a734b108",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:11:34.090Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779027084076_a739ae15",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 112,
+      "lightLevelLux": 201,
+      "smokePpm": 10,
+      "temperatureC": 23.8
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:11:24.077Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779027074062_7018da10",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:11:14.062Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779027064045_c942f09f",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 252,
+      "smokePpm": 180,
+      "temperatureC": 24.4
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:11:04.045Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779027054032_18978288",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:10:54.032Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779027047103_1f6f08b5",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:10:47.103Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027047089_7af69337",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:10:47.089Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027044017_6caa3754",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:10:44.017Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779027044017_0e1ae8d6",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:10:44.017Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779027023974_4aa24c73",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 127,
+      "lightLevelLux": 18,
+      "smokePpm": 9,
+      "temperatureC": 25.2
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:10:23.975Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779027003929_dd293ce3",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:10:03.929Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026993911_6c30e664",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 114,
+      "lightLevelLux": 207,
+      "smokePpm": 5,
+      "temperatureC": 25.3
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:09:53.911Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026983894_61d02e38",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:09:43.895Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026973886_d79cb41b",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 180,
+      "smokePpm": 180,
+      "temperatureC": 25.4
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:09:33.887Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026963863_3b398273",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:09:23.864Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026956963_1edd095c",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:09:16.963Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026956958_bf2b7b11",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:09:16.958Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026953844_06567721",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:09:13.844Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026953844_0f40895e",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:09:13.844Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026933783_50152c8d",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 117,
+      "lightLevelLux": 18,
+      "smokePpm": 9,
+      "temperatureC": 23.7
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:08:53.783Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026913736_58654900",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:08:33.736Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026903719_bf2b5fc4",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 96,
+      "lightLevelLux": 189,
+      "smokePpm": 7,
+      "temperatureC": 25.8
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:08:23.719Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026893676_3044d9c0",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:08:13.676Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026883654_ed3e6677",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 260,
+      "smokePpm": 180,
+      "temperatureC": 25.1
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:08:03.654Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026873633_a86d59df",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:07:53.633Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026866769_1000515c",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:07:46.769Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026866763_b238b62f",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:07:46.764Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026863614_cf91eb1d",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:07:43.614Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026863613_afe479e8",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:07:43.614Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026843580_9d9ea580",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 103,
+      "lightLevelLux": 18,
+      "smokePpm": 6,
+      "temperatureC": 24.7
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:07:23.581Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026823543_670a4288",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:07:03.543Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026813520_e075c929",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 125,
+      "lightLevelLux": 257,
+      "smokePpm": 6,
+      "temperatureC": 24.1
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:06:53.520Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026803504_fbf21fe0",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:06:43.504Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026793482_b7d06ae1",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 221,
+      "smokePpm": 180,
+      "temperatureC": 25.4
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:06:33.482Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026783464_57252139",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:06:23.464Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026776621_61976df2",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:06:16.621Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026776614_f22a30db",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:06:16.614Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026773452_f9196e62",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:06:13.452Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026773452_463a5db0",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:06:13.452Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026753420_7a52080d",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 95,
+      "lightLevelLux": 18,
+      "smokePpm": 11,
+      "temperatureC": 25.3
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:05:53.420Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026733386_af5afe9d",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:05:33.386Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026723372_a63f79f5",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 108,
+      "lightLevelLux": 220,
+      "smokePpm": 6,
+      "temperatureC": 25
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:05:23.372Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026713360_64e39ea3",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:05:13.360Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026703339_2960576a",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 182,
+      "smokePpm": 180,
+      "temperatureC": 23.9
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:05:03.339Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026693317_e05d1efe",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:04:53.317Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026686457_5fae1dbc",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:04:46.457Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026686452_18e1b6dd",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:04:46.452Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026683301_5b8da9e5",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:04:43.301Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026683301_df277f55",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:04:43.301Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026663231_4e91a410",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 130,
+      "lightLevelLux": 18,
+      "smokePpm": 6,
+      "temperatureC": 24.4
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:04:23.235Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026643191_b2616492",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:04:03.191Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026633165_3ab4a564",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 96,
+      "lightLevelLux": 238,
+      "smokePpm": 6,
+      "temperatureC": 25.2
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:03:53.165Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026623146_2b1c4a08",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:03:43.146Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026613127_a8b3624e",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 206,
+      "smokePpm": 180,
+      "temperatureC": 25.1
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:03:33.128Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026603108_3dbc7430",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:03:23.109Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026596282_adc8c869",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:03:16.282Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026596277_0f61d069",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:03:16.277Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026593089_0a0b2445",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:03:13.089Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026593089_20794df3",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:03:13.089Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026573048_1a66863c",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 108,
+      "lightLevelLux": 18,
+      "smokePpm": 6,
+      "temperatureC": 25.1
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:02:53.048Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026553009_d38332a8",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:02:33.009Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026542992_03f5e65d",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 116,
+      "lightLevelLux": 213,
+      "smokePpm": 11,
+      "temperatureC": 24.4
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:02:22.992Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026532977_98d4850b",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:02:12.977Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026522960_6a237fad",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 230,
+      "smokePpm": 180,
+      "temperatureC": 24.1
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:02:02.960Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026512942_b40d60fa",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:01:52.943Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026506099_2932c28e",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:01:46.099Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026506095_fff4e2cd",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:01:46.095Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026502927_ca347c1a",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:01:42.927Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026502926_91ea258a",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:01:42.927Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026482899_402d59fa",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 92,
+      "lightLevelLux": 18,
+      "smokePpm": 8,
+      "temperatureC": 25.3
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:01:22.899Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026462873_f823413a",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:01:02.874Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026452855_042d3cb6",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 130,
+      "lightLevelLux": 249,
+      "smokePpm": 6,
+      "temperatureC": 23.8
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:00:52.855Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026442836_0010a7c7",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:00:42.836Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026432818_28b28d1d",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 226,
+      "smokePpm": 180,
+      "temperatureC": 25.4
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:00:32.818Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026422801_98077843",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:00:22.801Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026415950_e8948524",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T14:00:15.950Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026415946_c6e5d092",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T14:00:15.946Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026412784_3ace676f",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:00:12.784Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026412783_63cb6e62",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T14:00:12.784Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026392741_99cae951",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 95,
+      "lightLevelLux": 18,
+      "smokePpm": 6,
+      "temperatureC": 24.9
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:59:52.741Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026372718_98dfb470",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:59:32.718Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026362696_ba38f4e7",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 128,
+      "lightLevelLux": 192,
+      "smokePpm": 12,
+      "temperatureC": 24
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:59:22.696Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026352677_5d2fdd59",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:59:12.677Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026342656_60a4da02",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 226,
+      "smokePpm": 180,
+      "temperatureC": 25
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:59:02.656Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026332634_cc5a634d",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:58:52.634Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026325760_05e66e97",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:58:45.760Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026325747_f1ae1264",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:58:45.748Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026322616_52293586",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:58:42.616Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026322616_770588ee",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:58:42.616Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026302577_14ba7c8a",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 99,
+      "lightLevelLux": 18,
+      "smokePpm": 12,
+      "temperatureC": 25.4
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:58:22.577Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026282540_898ee6f3",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:58:02.540Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026272527_96b7faae",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 106,
+      "lightLevelLux": 238,
+      "smokePpm": 12,
+      "temperatureC": 24.7
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:57:52.527Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026262508_2fa7f072",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:57:42.508Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026252487_449e4b2c",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 206,
+      "smokePpm": 180,
+      "temperatureC": 25.4
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:57:32.487Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026242470_6c6716e3",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:57:22.471Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026235606_aabea45a",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:57:15.606Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026235601_d67297fa",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:57:15.601Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026232452_ebc832f9",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:57:12.452Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026232452_dfd44d33",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:57:12.452Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026212416_b18a2b46",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 104,
+      "lightLevelLux": 18,
+      "smokePpm": 11,
+      "temperatureC": 24.5
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:56:52.416Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026192383_2fe03106",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:56:32.383Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026182371_7ff0c4bd",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 117,
+      "lightLevelLux": 216,
+      "smokePpm": 11,
+      "temperatureC": 25.5
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:56:22.371Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026172353_b2a6fc07",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:56:12.353Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026162333_7f8f65bb",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 215,
+      "smokePpm": 180,
+      "temperatureC": 23.9
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:56:02.334Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026152313_57b4879b",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:55:52.313Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026145462_1c2e7a6d",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:55:45.462Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026145457_e310275a",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:55:45.457Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026142302_11939172",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:55:42.302Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026142302_8e07e324",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:55:42.302Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026122266_45a4b867",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 130,
+      "lightLevelLux": 18,
+      "smokePpm": 8,
+      "temperatureC": 24.1
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:55:22.266Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026102233_7f4d95df",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:55:02.233Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026092214_fc2e7653",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 96,
+      "lightLevelLux": 258,
+      "smokePpm": 12,
+      "temperatureC": 23.7
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:54:52.214Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779026082194_193d36d4",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:54:42.195Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779026072174_18c27507",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 212,
+      "smokePpm": 180,
+      "temperatureC": 25.3
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:54:32.174Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779026062144_4937c888",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:54:22.144Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779026055295_ad4bca80",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:54:15.295Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026055290_dccf93fc",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:54:15.290Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026052130_45ea6ba7",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:54:12.130Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779026052130_30731d49",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:54:12.130Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779026032090_bfc94133",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 123,
+      "lightLevelLux": 18,
+      "smokePpm": 6,
+      "temperatureC": 24.8
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:53:52.090Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779026012056_2a441858",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:53:32.056Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779026002037_267419ef",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 94,
+      "lightLevelLux": 231,
+      "smokePpm": 8,
+      "temperatureC": 25.3
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:53:22.037Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025992024_c2c3e5c1",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:53:12.024Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025982007_2d02c795",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 233,
+      "smokePpm": 180,
+      "temperatureC": 24.1
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:53:02.007Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025971986_7a79c46d",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:52:51.986Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025965142_f28a703b",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:52:45.142Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025965138_fd42c83f",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:52:45.138Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025961966_5707a83b",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:52:41.966Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025961965_badf5abd",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:52:41.966Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025941926_7a6b3578",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 110,
+      "lightLevelLux": 18,
+      "smokePpm": 8,
+      "temperatureC": 23.7
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:52:21.926Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025921887_ddcddd5d",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:52:01.887Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025911871_0c9e559f",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 125,
+      "lightLevelLux": 239,
+      "smokePpm": 5,
+      "temperatureC": 24.9
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:51:51.871Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025901854_c35b9737",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:51:41.854Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025891839_d16f4073",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 228,
+      "smokePpm": 180,
+      "temperatureC": 23.7
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:51:31.840Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025881822_54e94a8a",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:51:21.822Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025874990_3611d81c",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:51:14.990Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025874981_c5fce029",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:51:14.981Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025871805_435ef026",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:51:11.805Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025871805_4d9a000a",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:51:11.805Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025851758_078211bd",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 100,
+      "lightLevelLux": 18,
+      "smokePpm": 6,
+      "temperatureC": 24.3
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:50:51.758Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025831725_c79ece0d",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:50:31.725Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025821707_3e6f3fdf",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 116,
+      "lightLevelLux": 258,
+      "smokePpm": 11,
+      "temperatureC": 25
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:50:21.707Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025811688_56c7e7f7",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:50:11.688Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025801670_750a03c3",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 248,
+      "smokePpm": 180,
+      "temperatureC": 24.3
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:50:01.671Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025791651_398591e0",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:49:51.651Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025784823_11ba93af",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:49:44.823Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025784818_3a0666a9",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:49:44.818Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025781631_a3640176",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:49:41.631Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025781631_c33c2f2b",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:49:41.631Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025761590_d3e0eac1",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 97,
+      "lightLevelLux": 18,
+      "smokePpm": 7,
+      "temperatureC": 23.7
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:49:21.590Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025741560_4081a795",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:49:01.560Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025731539_a07aa1d5",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 101,
+      "lightLevelLux": 212,
+      "smokePpm": 5,
+      "temperatureC": 25
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:48:51.539Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025721520_27986a6e",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:48:41.520Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025711501_ff5e305b",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 204,
+      "smokePpm": 180,
+      "temperatureC": 24
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:48:31.502Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025701483_26da38c2",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:48:21.483Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025694653_c3fe6d17",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:48:14.653Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025694648_c69483c2",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:48:14.648Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025691465_25265db1",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:48:11.465Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025691465_1f2596e4",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:48:11.465Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025671426_d978cefa",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 124,
+      "lightLevelLux": 18,
+      "smokePpm": 6,
+      "temperatureC": 25.4
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:47:51.427Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025651393_865a75dd",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:47:31.393Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025641374_41ea0ef2",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 123,
+      "lightLevelLux": 207,
+      "smokePpm": 9,
+      "temperatureC": 24.1
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:47:21.374Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025631362_12b96d90",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:47:11.362Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025621348_143d22e7",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 182,
+      "smokePpm": 180,
+      "temperatureC": 24.3
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:47:01.348Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025611335_d6a588e6",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:46:51.335Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025604528_d3b50f6c",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:46:44.528Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025604522_0e8ecdf6",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:46:44.522Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025601320_99e16345",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:46:41.320Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025601319_3eb869ba",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:46:41.320Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025581292_91ef193f",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 107,
+      "lightLevelLux": 18,
+      "smokePpm": 7,
+      "temperatureC": 24.9
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:46:21.292Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025561263_7982f0d5",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:46:01.263Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025551250_36e85dfa",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 91,
+      "lightLevelLux": 193,
+      "smokePpm": 6,
+      "temperatureC": 25
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:45:51.250Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025541240_177f4a25",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:45:41.240Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025531226_194e953e",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 183,
+      "smokePpm": 180,
+      "temperatureC": 24.8
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:45:31.226Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025521214_94e4dd8a",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:45:21.214Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025514404_826736c1",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:45:14.404Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025514399_1eede717",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:45:14.399Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025511200_94a4f03c",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:45:11.200Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025511200_c347301d",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:45:11.200Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025491173_c648ce1e",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 116,
+      "lightLevelLux": 18,
+      "smokePpm": 7,
+      "temperatureC": 24.8
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:44:51.173Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025471142_3f550086",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:44:31.142Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025461130_12698bf9",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 100,
+      "lightLevelLux": 251,
+      "smokePpm": 5,
+      "temperatureC": 24.1
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:44:21.130Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025451116_721d6154",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:44:11.116Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025441101_7a7da675",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 231,
+      "smokePpm": 180,
+      "temperatureC": 23.6
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:44:01.101Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025431087_549cda67",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:43:51.088Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025424257_20cbba10",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:43:44.257Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025424250_f84e80d6",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:43:44.251Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025421074_9d219169",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:43:41.074Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025421073_4aa3e81e",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:43:41.074Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025401045_4e4df37d",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 103,
+      "lightLevelLux": 18,
+      "smokePpm": 12,
+      "temperatureC": 23.8
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:43:21.045Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025381020_a15546bc",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:43:01.020Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025371008_7450b5b6",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 94,
+      "lightLevelLux": 180,
+      "smokePpm": 12,
+      "temperatureC": 24.8
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:42:51.008Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025360994_3625a00b",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:42:40.994Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025350981_54c37c06",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 253,
+      "smokePpm": 180,
+      "temperatureC": 25.5
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:42:30.981Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025340952_e3c2af80",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:42:20.952Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025334137_9311baec",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:42:14.137Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025334132_ad495dad",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:42:14.132Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025330930_7fcea7fc",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:42:10.930Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025330930_9c431203",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:42:10.930Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025310891_ba6954b5",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 106,
+      "lightLevelLux": 18,
+      "smokePpm": 12,
+      "temperatureC": 24.7
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:41:50.891Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025290862_addef8f8",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:41:30.862Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025280846_18bccf79",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 115,
+      "lightLevelLux": 207,
+      "smokePpm": 6,
+      "temperatureC": 23.7
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:41:20.846Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  },
+  {
+    "id": "evt_1779025270828_1db44981",
+    "message": "Gaz ve duman degerleri normal seviyeye indi.",
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:41:10.828Z",
+    "title": "Gaz alarmi temizlendi",
+    "type": "gas-cleared"
+  },
+  {
+    "id": "evt_1779025260806_5a28a92f",
+    "message": "Gaz veya duman sensoru kritik seviyeye ulasti.",
+    "readings": {
+      "gasPpm": 590,
+      "lightLevelLux": 226,
+      "smokePpm": 180,
+      "temperatureC": 24.3
+    },
+    "severity": "high",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:41:00.806Z",
+    "title": "Gaz / duman alarmi",
+    "type": "gas"
+  },
+  {
+    "id": "evt_1779025250787_88638086",
+    "message": "Kapi tekrar kapandi, acik kalma suresi sifirlandi.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:40:50.789Z",
+    "title": "Kapi kapandi",
+    "type": "door-closed"
+  },
+  {
+    "id": "evt_1779025243990_c60d141a",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "raspberry-pi",
+    "timestamp": "2026-05-17T13:40:43.990Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025243965_97fe7875",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:40:43.965Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025240769_1f3c7240",
+    "message": "Evden cikis senaryosu kaydedildi. Vasi bilgilendirilmelidir.",
+    "severity": "medium",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:40:40.769Z",
+    "title": "Evden cikis algilandi",
+    "type": "exit-detected"
+  },
+  {
+    "id": "evt_1779025240769_8c41f163",
+    "message": "Kapi acildi. Giris veya cikis hareketi kaydediliyor.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:40:40.769Z",
+    "title": "Kapi acildi",
+    "type": "door-opened"
+  },
+  {
+    "id": "evt_1779025220735_881b7a67",
+    "message": "Karanlik ortamda hareket algilandi, acil aydinlatma tetiklenebilir.",
+    "readings": {
+      "gasPpm": 100,
+      "lightLevelLux": 18,
+      "smokePpm": 11,
+      "temperatureC": 25.6
+    },
+    "severity": "info",
+    "source": "esp32",
+    "timestamp": "2026-05-17T13:40:20.735Z",
+    "title": "Gece hareketi kaydedildi",
+    "type": "dark-motion"
+  },
+  {
+    "id": "evt_1779025200710_8361d012",
+    "message": "Dusme alarmi normale dondu.",
+    "severity": "info",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:40:00.710Z",
+    "title": "Dusme alarmi temizlendi",
+    "type": "fall-cleared"
+  },
+  {
+    "id": "evt_1779025190692_2260dd43",
+    "message": "Kamera veya model cikisi ani dusme olasiligi bildirdi.",
+    "readings": {
+      "gasPpm": 115,
+      "lightLevelLux": 243,
+      "smokePpm": 9,
+      "temperatureC": 23.9
+    },
+    "severity": "critical",
+    "source": "camera",
+    "timestamp": "2026-05-17T13:39:50.692Z",
+    "title": "Ani dusme algilandi",
+    "type": "fall"
+  }
+]

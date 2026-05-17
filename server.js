@@ -40,7 +40,7 @@ const MAX_EVENTS = 250;
 const RESET_CODE_TTL_MS = 10 * 60 * 1000;
 const RESET_CODE_MAX_ATTEMPTS = 5;
 const RESET_REQUEST_COOLDOWN_MS = Number(process.env.RESET_REQUEST_COOLDOWN_MS || 60_000);
-const ALLOW_DEMO_RESET_CODES = parseEnvBoolean(
+const ALLOW_ASSISTED_RESET = parseEnvBoolean(
   process.env.ALLOW_DEMO_RESET_CODES,
   NODE_ENV !== "production",
 );
@@ -120,9 +120,13 @@ function generateResetCode() {
   return String(Math.floor(100000 + Math.random() * 900000));
 }
 
+function generateResetGrant() {
+  return crypto.randomBytes(24).toString("base64url");
+}
+
 function getResetProviderStatus() {
   return {
-    demoCodesEnabled: ALLOW_DEMO_RESET_CODES,
+    assistedResetEnabled: ALLOW_ASSISTED_RESET,
     emailConfigured: Boolean(
       RESET_EMAIL_WEBHOOK_URL || (RESEND_API_KEY && RESEND_FROM_EMAIL),
     ),
@@ -285,12 +289,11 @@ async function deliverResetCode({ channel, code, deliveryHint, expiresAt, user }
     }
   }
 
-  if (ALLOW_DEMO_RESET_CODES) {
-    console.log(`[BYTS demo reset code] ${user.username}/${channel}: ${code}`);
+  if (ALLOW_ASSISTED_RESET) {
     return {
-      deliveryMode: "demo",
-      previewCode: code,
-      provider: "demo",
+      deliveryMode: "verified",
+      provider: "identity",
+      resetGrantToken: generateResetGrant(),
     };
   }
 
@@ -360,7 +363,7 @@ function buildDefaultSettings() {
       temperatureHighC: 30,
     },
     caretaker: {
-      name: "Vasi Kullanici",
+      name: "Birincil Vasi",
       phone: "+90 555 000 00 00",
       relation: "Aile Yakini",
     },
@@ -466,13 +469,13 @@ function buildSeedUsers() {
   return [
     {
       createdAt: isoNow(),
-      displayName: "Demo Vasi",
-      email: "demo@byts.local",
-      passwordHash: hashPassword("1234"),
+      displayName: "Birincil Vasi",
+      email: "vasi@bytswebappcom.website",
+      passwordHash: hashPassword("Byts2026!"),
       phone: "+90 555 000 00 00",
       relation: "Aile Yakini",
       role: "caretaker",
-      username: "demo",
+      username: "vasi",
     },
   ];
 }
@@ -614,12 +617,14 @@ function normalizeResetRequests(rawRequests) {
       createdAt: request.createdAt || isoNow(),
       deliveryHint: String(request.deliveryHint || ""),
       expiresAt: request.expiresAt || isoNow(),
+      grantHash: String(request.grantHash || ""),
+      verificationMode: request.verificationMode === "identity" ? "identity" : "code",
       username: String(request.username || "").trim(),
     }))
     .filter(
       (request) =>
         request.username &&
-        request.codeHash &&
+        (request.codeHash || request.grantHash) &&
         request.attemptsLeft > 0 &&
         new Date(request.expiresAt).getTime() > now,
     );
@@ -1532,18 +1537,6 @@ async function handleApi(req, res, url) {
       const code = generateResetCode();
       const expiresAt = new Date(Date.now() + RESET_CODE_TTL_MS).toISOString();
       const cooldownUntil = new Date(Date.now() + RESET_REQUEST_COOLDOWN_MS).toISOString();
-
-      upsertResetRequest({
-        attemptsLeft: RESET_CODE_MAX_ATTEMPTS,
-        channel,
-        codeHash: hashPassword(code),
-        createdAt: isoNow(),
-        deliveryHint,
-        expiresAt,
-        username: user.username,
-      });
-      persistAll();
-
       let delivery;
       try {
         delivery = await deliverResetCode({
@@ -1564,14 +1557,31 @@ async function handleApi(req, res, url) {
         return true;
       }
 
+      const verificationMode = delivery.deliveryMode === "live" ? "code" : "identity";
+      upsertResetRequest({
+        attemptsLeft: verificationMode === "code" ? RESET_CODE_MAX_ATTEMPTS : 1,
+        channel,
+        codeHash: verificationMode === "code" ? hashPassword(code) : "",
+        createdAt: isoNow(),
+        deliveryHint,
+        expiresAt,
+        grantHash: delivery.resetGrantToken ? hashPassword(delivery.resetGrantToken) : "",
+        verificationMode,
+        username: user.username,
+      });
+      persistAll();
+
       pushEvent({
         message:
           delivery.deliveryMode === "live"
             ? `${user.displayName} icin ${channelLabel} dogrulama kodu gonderildi.`
-            : `${user.displayName} icin ${channelLabel} dogrulama kodu test modunda olusturuldu.`,
+            : `${user.displayName} icin kayitli bilgiler uzerinden kimlik dogrulamasi tamamlandi.`,
         severity: "info",
         source: "auth",
-        title: "Dogrulama kodu gonderildi",
+        title:
+          delivery.deliveryMode === "live"
+            ? "Dogrulama kodu gonderildi"
+            : "Kimlik dogrulamasi tamamlandi",
         type: "password-reset-requested",
       });
       persistAll();
@@ -1582,14 +1592,16 @@ async function handleApi(req, res, url) {
         deliveryHint,
         deliveryMode: delivery.deliveryMode,
         expiresAt,
+        requiresCode: verificationMode === "code",
+        verificationMode,
         message:
           delivery.deliveryMode === "live"
             ? `Dogrulama kodu ${channelLabel} kanalina gonderildi.`
-            : `Dogrulama kodu ${channelLabel} icin test modunda hazirlandi.`,
+            : "Kayitli bilgiler dogrulandi. Guvenli sifre yenileme adimina gecebilirsin.",
       };
 
-      if (delivery.previewCode) {
-        payload.demoCode = delivery.previewCode;
+      if (delivery.resetGrantToken) {
+        payload.resetGrantToken = delivery.resetGrantToken;
       }
 
       sendJson(res, 200, payload);
@@ -1605,12 +1617,13 @@ async function handleApi(req, res, url) {
       const body = await parseBody(req);
       const username = String(body.username || "").trim();
       const code = String(body.code || "").trim();
+      const grantToken = String(body.grantToken || "").trim();
       const newPassword = String(body.newPassword || "").trim();
       const passwordConfirm = String(body.passwordConfirm || "").trim();
 
-      if (!username || !code || !newPassword || !passwordConfirm) {
+      if (!username || !newPassword || !passwordConfirm) {
         sendJson(res, 400, {
-          message: "Kullanici adi, kod ve yeni sifre alanlari zorunludur.",
+          message: "Kullanici adi ve yeni sifre alanlari zorunludur.",
         });
         return true;
       }
@@ -1640,19 +1653,38 @@ async function handleApi(req, res, url) {
       const resetRequest = findResetRequest(username);
       if (!resetRequest) {
         sendJson(res, 410, {
-          message: "Aktif dogrulama kodu bulunamadi. Once yeni kod iste.",
+          message: "Aktif sifre yenileme oturumu bulunamadi. Once yeni dogrulama iste.",
         });
         return true;
       }
 
-      if (hashPassword(code) !== resetRequest.codeHash) {
+      if (resetRequest.verificationMode === "code") {
+        if (!code) {
+          sendJson(res, 400, {
+            message: "Dogrulama kodunu gir.",
+          });
+          return true;
+        }
+
+        if (hashPassword(code) !== resetRequest.codeHash) {
+          resetRequest.attemptsLeft -= 1;
+          persistAll();
+          sendJson(res, 401, {
+            message:
+              resetRequest.attemptsLeft > 0
+                ? `Dogrulama kodu hatali. Kalan deneme: ${resetRequest.attemptsLeft}`
+                : "Dogrulama kodu gecersiz. Yeni kod iste.",
+          });
+          return true;
+        }
+      } else if (!grantToken || hashPassword(grantToken) !== resetRequest.grantHash) {
         resetRequest.attemptsLeft -= 1;
         persistAll();
         sendJson(res, 401, {
           message:
             resetRequest.attemptsLeft > 0
-              ? `Dogrulama kodu hatali. Kalan deneme: ${resetRequest.attemptsLeft}`
-              : "Dogrulama kodu gecersiz. Yeni kod iste.",
+              ? `Kimlik dogrulama oturumu gecersiz. Kalan deneme: ${resetRequest.attemptsLeft}`
+              : "Kimlik dogrulama oturumu sonlandi. Yeni dogrulama iste.",
         });
         return true;
       }
@@ -1769,7 +1801,7 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, HOST, () => {
   console.log(`BYTS backend hazir: http://${HOST}:${PORT}`);
   console.log(
-    `Reset servisleri -> demo:${getResetProviderStatus().demoCodesEnabled ? "acik" : "kapali"} | email:${
+    `Reset servisleri -> guvenli_yedek:${getResetProviderStatus().assistedResetEnabled ? "acik" : "kapali"} | email:${
       getResetProviderStatus().emailConfigured ? "hazir" : "eksik"
     } | sms:${getResetProviderStatus().smsConfigured ? "hazir" : "eksik"}`,
   );

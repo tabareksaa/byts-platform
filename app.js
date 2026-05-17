@@ -22,6 +22,7 @@ const refs = {
   forgotCancelBtn: document.getElementById("forgotCancelBtn"),
   forgotChannel: document.getElementById("forgotChannel"),
   forgotCode: document.getElementById("forgotCode"),
+  forgotCodeField: document.getElementById("forgotCodeField"),
   forgotEmail: document.getElementById("forgotEmail"),
   forgotEmailField: document.getElementById("forgotEmailField"),
   forgotLink: document.getElementById("forgotLink"),
@@ -229,10 +230,22 @@ function renderForgotMeta() {
   const cooldownUntilMs = new Date(appState.forgotRequest.cooldownUntil || 0).getTime();
   const parts = [];
 
+  if (appState.forgotRequest.verificationMode === "identity") {
+    parts.push("Kimlik dogrulama oturumu aktif.");
+  }
+
   if (Number.isFinite(expiresAtMs) && expiresAtMs > now) {
-    parts.push(`Kod ${formatRemainingTime(expiresAtMs - now)} boyunca gecerli.`);
+    parts.push(
+      appState.forgotRequest.requiresCode === false
+        ? `Dogrulama oturumu ${formatRemainingTime(expiresAtMs - now)} boyunca gecerli.`
+        : `Kod ${formatRemainingTime(expiresAtMs - now)} boyunca gecerli.`,
+    );
   } else {
-    parts.push("Kodun suresi doldu. Yeniden kod iste.");
+    parts.push(
+      appState.forgotRequest.requiresCode === false
+        ? "Dogrulama oturumunun suresi doldu. Yeni dogrulama iste."
+        : "Kodun suresi doldu. Yeniden kod iste.",
+    );
   }
 
   if (Number.isFinite(cooldownUntilMs) && cooldownUntilMs > now) {
@@ -298,6 +311,7 @@ function clearForgotForm() {
   refs.forgotPassword.value = "";
   refs.forgotPasswordConfirm.value = "";
   updateForgotChannelFields();
+  updateForgotVerificationFields();
 }
 
 function setForgotStep(step) {
@@ -307,12 +321,18 @@ function setForgotStep(step) {
   refs.forgotRequestBtn.classList.toggle("hidden", showConfirm);
   refs.forgotResendBtn.classList.toggle("hidden", !showConfirm);
   refs.forgotSubmitBtn.classList.toggle("hidden", !showConfirm);
+  updateForgotVerificationFields();
 }
 
 function updateForgotChannelFields() {
   const channel = refs.forgotChannel.value;
   refs.forgotPhoneField.classList.toggle("hidden", channel !== "sms");
   refs.forgotEmailField.classList.toggle("hidden", channel !== "email");
+}
+
+function updateForgotVerificationFields() {
+  const requiresCode = appState.forgotRequest ? appState.forgotRequest.requiresCode !== false : true;
+  refs.forgotCodeField?.classList.toggle("hidden", !requiresCode);
 }
 
 async function api(path, options = {}) {
@@ -760,7 +780,7 @@ async function requestResetCode() {
   }
 
   try {
-    setForgotMessage("Dogrulama kodu gonderiliyor...");
+    setForgotMessage("Kimlik dogrulamasi baslatiliyor...");
     const response = await api("/api/auth/request-reset-code", {
       body: JSON.stringify({
         channel,
@@ -777,26 +797,29 @@ async function requestResetCode() {
       deliveryHint: response.deliveryHint,
       deliveryMode: response.deliveryMode,
       expiresAt: response.expiresAt,
+      grantToken: response.resetGrantToken || "",
+      requiresCode: response.requiresCode !== false,
+      verificationMode: response.verificationMode || (response.requiresCode === false ? "identity" : "code"),
       username,
     };
 
-    const summaryParts = [
-      `${channel === "sms" ? "SMS" : "E-posta"} kodu ${response.deliveryHint} adresine gonderildi.`,
-    ];
-
-    if (response.deliveryMode === "demo" && response.demoCode) {
-      summaryParts.push(`Test modu kodu: ${response.demoCode}`);
-    }
+    const summaryParts =
+      response.requiresCode === false
+        ? [
+            "Kayitli bilgiler basariyla eslestirildi.",
+            "Guvenli sifre yenileme adimina gecildi.",
+          ]
+        : [`${channel === "sms" ? "SMS" : "E-posta"} kodu ${response.deliveryHint} adresine gonderildi.`];
 
     refs.forgotSummary.textContent = summaryParts.join(" ");
     setForgotStep("confirm");
-    setForgotMessage(
-      response.deliveryMode === "demo" && response.demoCode
-        ? `${response.message} Test modu aktif oldugu icin kod ekranda gosterildi.`
-        : response.message,
-    );
+    setForgotMessage(response.message);
     startForgotCountdown();
-    refs.forgotCode.focus();
+    if (appState.forgotRequest.requiresCode === false) {
+      refs.forgotPassword.focus();
+    } else {
+      refs.forgotCode.focus();
+    }
   } catch (error) {
     setForgotMessage(error.message, true);
   }
@@ -808,13 +831,18 @@ async function resetPassword() {
   const newPassword = refs.forgotPassword.value.trim();
   const passwordConfirm = refs.forgotPasswordConfirm.value.trim();
 
-  if (!username || !code || !newPassword || !passwordConfirm) {
-    setForgotMessage("Kod ve yeni sifre alanlarini doldur.", true);
+  if (!username || !newPassword || !passwordConfirm) {
+    setForgotMessage("Yeni sifre alanlarini doldur.", true);
     return;
   }
 
   if (!appState.forgotRequest || appState.forgotRequest.username !== username) {
     setForgotMessage("Once dogrulama kodu iste.", true);
+    return;
+  }
+
+  if (appState.forgotRequest.requiresCode !== false && !code) {
+    setForgotMessage("Dogrulama kodunu gir.", true);
     return;
   }
 
@@ -828,6 +856,7 @@ async function resetPassword() {
     const response = await api("/api/auth/reset-password", {
       body: JSON.stringify({
         code,
+        grantToken: appState.forgotRequest.grantToken || "",
         newPassword,
         passwordConfirm,
         username,
