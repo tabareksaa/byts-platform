@@ -30,6 +30,11 @@ const APP_NAME = String(process.env.APP_NAME || "BYTS").trim() || "BYTS";
 const PUBLIC_BASE_URL = trimTrailingSlash(process.env.PUBLIC_BASE_URL || "");
 const ROOT_DIR = __dirname;
 const DATA_DIR = path.join(ROOT_DIR, "data");
+const ROOT_STATE_FILE = path.join(ROOT_DIR, "state.json");
+const ROOT_SETTINGS_FILE = path.join(ROOT_DIR, "settings.json");
+const ROOT_EVENTS_FILE = path.join(ROOT_DIR, "events.json");
+const ROOT_USERS_FILE = path.join(ROOT_DIR, "users.json");
+const ROOT_RESET_REQUESTS_FILE = path.join(ROOT_DIR, "reset-requests.json");
 const STATE_FILE = path.join(DATA_DIR, "state.json");
 const SETTINGS_FILE = path.join(DATA_DIR, "settings.json");
 const EVENTS_FILE = path.join(DATA_DIR, "events.json");
@@ -41,7 +46,7 @@ const RESET_CODE_TTL_MS = 10 * 60 * 1000;
 const RESET_CODE_MAX_ATTEMPTS = 5;
 const RESET_REQUEST_COOLDOWN_MS = Number(process.env.RESET_REQUEST_COOLDOWN_MS || 60_000);
 const ALLOW_ASSISTED_RESET = parseEnvBoolean(
-  process.env.ALLOW_DEMO_RESET_CODES,
+  process.env.ALLOW_ASSISTED_RESET ?? process.env.ALLOW_DEMO_RESET_CODES,
   NODE_ENV !== "production",
 );
 const RESET_SMS_WEBHOOK_URL = String(process.env.RESET_SMS_WEBHOOK_URL || "").trim();
@@ -322,6 +327,36 @@ function writeJson(filePath, data) {
   fs.renameSync(tempPath, filePath);
 }
 
+function readJsonIfExists(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    return undefined;
+  }
+}
+
+function bootstrapJsonFile(primaryPath, fallback, legacyPaths = []) {
+  const primaryData = readJsonIfExists(primaryPath);
+  if (primaryData !== undefined) {
+    return primaryData;
+  }
+
+  for (const legacyPath of legacyPaths) {
+    const legacyData = readJsonIfExists(legacyPath);
+    if (legacyData === undefined) {
+      continue;
+    }
+
+    writeJson(primaryPath, legacyData);
+    console.log(
+      `[bootstrap] ${path.basename(legacyPath)} dosyasi ${path.relative(ROOT_DIR, primaryPath)} konumuna tasindi.`,
+    );
+    return legacyData;
+  }
+
+  return fallback;
+}
+
 function clampNumber(value, fallback) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
@@ -595,7 +630,7 @@ function normalizeUsers(rawUsers) {
     createdAt: user.createdAt || isoNow(),
     displayName: String(user.displayName || user.username || "Vasi Kullanici"),
     email: String(user.email || "").trim(),
-    passwordHash: String(user.passwordHash || hashPassword("1234")),
+    passwordHash: String(user.passwordHash || hashPassword("Byts2026!")),
     phone: String(user.phone || ""),
     relation: String(user.relation || "Aile Yakini"),
     role: String(user.role || "caretaker"),
@@ -678,12 +713,20 @@ function upsertResetRequest(request) {
 
 ensureDataDir();
 
-let settings = normalizeSettings(readJson(SETTINGS_FILE, buildDefaultSettings()));
-let state = normalizeState(readJson(STATE_FILE, buildDefaultState()));
-let events = normalizeEvents(readJson(EVENTS_FILE, buildSeedEvents()));
-let users = normalizeUsers(readJson(USERS_FILE, buildSeedUsers()));
+let settings = normalizeSettings(
+  bootstrapJsonFile(SETTINGS_FILE, buildDefaultSettings(), [ROOT_SETTINGS_FILE]),
+);
+let state = normalizeState(
+  bootstrapJsonFile(STATE_FILE, buildDefaultState(), [ROOT_STATE_FILE]),
+);
+let events = normalizeEvents(
+  bootstrapJsonFile(EVENTS_FILE, buildSeedEvents(), [ROOT_EVENTS_FILE]),
+);
+let users = normalizeUsers(
+  bootstrapJsonFile(USERS_FILE, buildSeedUsers(), [ROOT_USERS_FILE]),
+);
 let resetRequests = normalizeResetRequests(
-  readJson(RESET_REQUESTS_FILE, buildSeedResetRequests()),
+  bootstrapJsonFile(RESET_REQUESTS_FILE, buildSeedResetRequests(), [ROOT_RESET_REQUESTS_FILE]),
 );
 
 function persistAll() {

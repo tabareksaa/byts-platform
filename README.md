@@ -34,10 +34,10 @@ Tarayicida ac:
 http://localhost:8080
 ```
 
-Demo hesap:
+Varsayilan sunum hesabi:
 
-- kullanici adi: `demo`
-- sifre: `1234`
+- kullanici adi: `vasi`
+- sifre: `Byts2026!`
 
 ## Ortam degiskenleri
 
@@ -47,7 +47,7 @@ Uretim ortaminda `.env.example` dosyasindaki alanlari doldur:
 - `HOST=0.0.0.0`
 - `PORT=8080`
 - `PUBLIC_BASE_URL=https://senin-domainin.com`
-- `ALLOW_DEMO_RESET_CODES=false`
+- `ALLOW_ASSISTED_RESET=false`
 
 Sifre sifirlama icin iki secenekten birini kullan:
 
@@ -61,7 +61,7 @@ Sifre sifirlama icin iki secenekten birini kullan:
   - `TWILIO_FROM_PHONE`
   - veya `RESET_SMS_WEBHOOK_URL`
 
-`ALLOW_DEMO_RESET_CODES=false` iken servis ayari yoksa backend dogrulama kodu gondermez; bu bilincli olarak production davranisidir.
+`ALLOW_ASSISTED_RESET=false` iken servis ayari yoksa backend dogrulama kodu gondermez; bu bilincli olarak production davranisidir. `ALLOW_ASSISTED_RESET=true` ise kayitli bilgiler eslesirse kontrollu sifre yenileme oturumu acilir.
 
 ## Docker ile calistirma
 

@@ -25,7 +25,7 @@ HOST=0.0.0.0
 PORT=8080
 APP_NAME=BYTS
 PUBLIC_BASE_URL=https://senin-domainin.com
-ALLOW_DEMO_RESET_CODES=false
+ALLOW_ASSISTED_RESET=false
 ```
 
 Sifre sifirlama icin asagidaki ciftlerden birini sec:
@@ -139,7 +139,7 @@ https://senin-domainin.com/api/sensors/ingest
 Production'a cikarken mutlaka:
 
 ```bash
-ALLOW_DEMO_RESET_CODES=false
+ALLOW_ASSISTED_RESET=false
 ```
 
 Bu sayede kod ekranda gosterilmez; servis ayari yoksa backend hata verir ve eksik konfigurasyon gizlenmez.
