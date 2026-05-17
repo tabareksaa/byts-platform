@@ -1,0 +1,13 @@
+{
+  "name": "byts-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bireysel Yasam Takip Sistemi tam prototip platformu",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}

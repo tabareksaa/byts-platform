@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BYTS | Command Center</title>
+    <style>
+      :root {
+        --bg0: #061018;
+        --bg1: #0b1d2a;
+        --card: rgba(255, 255, 255, 0.07);
+        --card2: rgba(255, 255, 255, 0.1);
+        --line: rgba(255, 255, 255, 0.12);
+        --text: #eaf2f7;
+        --muted: rgba(234, 242, 247, 0.7);
+        --shadow: 0 26px 70px rgba(0, 0, 0, 0.55);
+
+        --brand: #18b89c;
+        --brand2: #67d24a;
+        --blue: #3a66ff;
+        --danger-a: #ff2e2e;
+        --danger-b: #ff8b3d;
+
+        --r-xl: 26px;
+        --r-lg: 22px;
+        --r-md: 18px;
+        --r-sm: 14px;
+
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 18%, rgba(24, 184, 156, 0.22), transparent 40%),
+          radial-gradient(circle at 84% 22%, rgba(58, 102, 255, 0.22), transparent 42%),
+          radial-gradient(circle at 62% 88%, rgba(103, 210, 74, 0.16), transparent 48%),
+          linear-gradient(180deg, var(--bg1), var(--bg0));
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.22;
+        background-image:
+          linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: radial-gradient(circle at 35% 20%, rgba(0, 0, 0, 1), transparent 65%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .screen {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 22px;
+      }
+
+      .glass {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.06));
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        border-radius: var(--r-xl);
+        backdrop-filter: blur(18px);
+      }
+
+      .logo {
+        width: 128px;
+        height: 128px;
+        border-radius: 28px;
+        object-fit: cover;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+      }
+
+      /* Splash */
+      .splash-card {
+        width: min(560px, 100%);
+        padding: 34px 26px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .splash-card::after {
+        content: "";
+        position: absolute;
+        inset: -120px -120px auto auto;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(58, 102, 255, 0.28), transparent 65%);
+      }
+
+      .splash-card h1 {
+        margin: 18px 0 6px;
+        font-size: 30px;
+        letter-spacing: -0.03em;
+      }
+
+      .splash-card p {
+        margin: 0;
+        color: var(--muted);
+        font-weight: 650;
+      }
+
+      .loader {
+        margin: 22px auto 0;
+        width: min(420px, 100%);
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .loader > i {
+        display: block;
+        height: 100%;
+        width: 45%;
+        background: linear-gradient(90deg, rgba(24, 184, 156, 0.1), rgba(24, 184, 156, 0.9), rgba(103, 210, 74, 0.6));
+        border-radius: 999px;
+        transform: translateX(-120%);
+        animation: load 1.05s var(--ease) infinite;
+      }
+
+      @keyframes load {
+        0% {
+          transform: translateX(-120%);
+        }
+        100% {
+          transform: translateX(260%);
+        }
+      }
+
+      /* Login */
+      .login-card {
+        width: min(560px, 100%);
+        padding: 26px;
+      }
+
+      .login-top {
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 10px 0 16px;
+      }
+
+      .login-top h2 {
+        margin: 14px 0 6px;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+      }
+
+      .login-top span {
+        color: var(--muted);
+        font-weight: 650;
+        font-size: 14px;
+      }
+
+      .fields {
+        display: grid;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .field {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .field:focus-within {
+        border-color: rgba(24, 184, 156, 0.55);
+        box-shadow: 0 0 0 4px rgba(24, 184, 156, 0.14);
+      }
+
+      .field svg {
+        width: 22px;
+        height: 22px;
+        opacity: 0.9;
+      }
+
+      .field input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        padding: 2px 0;
+        color: var(--text);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .field input::placeholder {
+        color: rgba(234, 242, 247, 0.55);
+        font-weight: 700;
+      }
+
+      .login-actions {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .btn {
+        border: 0;
+        cursor: pointer;
+        border-radius: 999px;
+        padding: 14px 16px;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+        transition: transform 160ms var(--ease), filter 160ms var(--ease), background 160ms var(--ease);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn-primary {
+        color: #061018;
+        background: linear-gradient(135deg, rgba(24, 184, 156, 1), rgba(103, 210, 74, 0.85));
+        box-shadow: 0 16px 34px rgba(24, 184, 156, 0.25);
+      }
+
+      .btn-primary:hover {
+        filter: brightness(1.04);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: rgba(234, 242, 247, 0.8);
+        font-size: 13px;
+        padding: 10px 12px;
+        letter-spacing: 0.01em;
+        font-weight: 850;
+      }
+
+      .btn-ghost:hover {
+        color: var(--text);
+        text-decoration: underline;
+      }
+
+      .login-help {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+
+      /* App */
+      .app-wrap {
+        width: min(1220px, 100%);
+        min-height: 760px;
+        display: grid;
+        grid-template-columns: 84px 1fr;
+        overflow: hidden;
+      }
+
+      .rail {
+        padding: 14px 10px;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        display: grid;
+        align-content: start;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .rail .brand-dot {
+        width: 58px;
+        height: 58px;
+        border-radius: 20px;
+        margin: 6px auto 8px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .rail .brand-dot img {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        object-fit: cover;
+      }
+
+      .rail button {
+        width: 58px;
+        height: 58px;
+        margin: 0 auto;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(234, 242, 247, 0.86);
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: transform 160ms var(--ease), background 160ms var(--ease), border-color 160ms var(--ease);
+      }
+
+      .rail button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(24, 184, 156, 0.5);
+      }
+
+      .rail button[aria-current="page"] {
+        background: rgba(24, 184, 156, 0.14);
+        border-color: rgba(24, 184, 156, 0.6);
+      }
+
+      .rail button svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .rail .spacer {
+        height: 12px;
+      }
+
+      .rail .logout {
+        margin-top: 10px;
+        border-color: rgba(255, 46, 46, 0.3);
+        background: rgba(255, 46, 46, 0.08);
+      }
+
+      .rail .logout:hover {
+        border-color: rgba(255, 46, 46, 0.55);
+      }
+
+      .main {
+        padding: 18px 18px 14px;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 10px 10px 14px;
+      }
+
+      .title h1 {
+        margin: 0;
+        font-size: 26px;
+        letter-spacing: -0.03em;
+      }
+
+      .title p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-weight: 650;
+        font-size: 14px;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(234, 242, 247, 0.85);
+        font-weight: 750;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .status::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--brand2);
+        box-shadow: 0 0 0 6px rgba(103, 210, 74, 0.18);
+      }
+
+      .view {
+        display: none;
+        animation: in 260ms var(--ease) both;
+      }
+
+      .view.active {
+        display: block;
+      }
+
+      @keyframes in {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 14px;
+      }
+
+      .panel {
+        border-radius: var(--r-lg);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        padding: 16px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      }
+
+      .alert {
+        grid-column: 1 / -1;
+        border-radius: var(--r-xl);
+        padding: 18px 16px;
+        background: linear-gradient(135deg, rgba(255, 46, 46, 1), rgba(255, 139, 61, 1));
+        box-shadow: 0 18px 40px rgba(255, 77, 45, 0.18);
+        display: grid;
+        grid-template-columns: 64px 1fr auto;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .alert .badge {
+        width: 64px;
+        height: 64px;
+        border-radius: 24px;
+        background: rgba(0, 0, 0, 0.16);
+        display: grid;
+        place-items: center;
+      }
+
+      .alert .badge svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .alert strong {
+        display: block;
+        letter-spacing: 0.12em;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .alert span {
+        display: block;
+        font-weight: 950;
+        font-size: 18px;
+        line-height: 1.25;
+      }
+
+      .alert time {
+        font-weight: 950;
+        font-size: 20px;
+        opacity: 0.95;
+      }
+
+      .tile {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tile::after {
+        content: "";
+        position: absolute;
+        inset: auto -40px -60px auto;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(24, 184, 156, 0.18), transparent 65%);
+        pointer-events: none;
+      }
+
+      .tile h3 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(234, 242, 247, 0.78);
+      }
+
+      .tile .value {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .tile .value strong {
+        font-size: 44px;
+        letter-spacing: -0.05em;
+        margin: 0;
+      }
+
+      .tile .value small {
+        color: var(--muted);
+        font-weight: 750;
+      }
+
+      .tile .meta {
+        margin-top: 10px;
+        color: rgba(234, 242, 247, 0.75);
+        font-weight: 650;
+        font-size: 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tile .meta::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--brand2);
+        box-shadow: 0 0 0 6px rgba(103, 210, 74, 0.14);
+      }
+
+      .radar {
+        grid-column: 1 / span 2;
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .radar .scope {
+        border-radius: var(--r-lg);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          radial-gradient(circle at center, rgba(24, 184, 156, 0.22), transparent 55%),
+          radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 60%),
+          rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+        min-height: 220px;
+      }
+
+      .radar .scope::before {
+        content: "";
+        position: absolute;
+        inset: -120px;
+        background: conic-gradient(
+          from 0deg,
+          rgba(24, 184, 156, 0) 0deg,
+          rgba(24, 184, 156, 0.55) 25deg,
+          rgba(24, 184, 156, 0) 55deg,
+          rgba(24, 184, 156, 0) 360deg
+        );
+        animation: sweep 2.4s linear infinite;
+        opacity: 0.9;
+      }
+
+      .radar .scope::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+          radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        background-size: 42px 42px, 86px 86px;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      @keyframes sweep {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .radar .legend {
+        padding: 14px;
+        border-radius: var(--r-lg);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        display: grid;
+        gap: 12px;
+      }
+
+      .legend .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+        padding: 10px 10px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+      }
+
+      .legend strong {
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(234, 242, 247, 0.8);
+      }
+
+      .legend span {
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      /* History view */
+      .list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .event {
+        display: grid;
+        grid-template-columns: 58px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 14px;
+        border-radius: var(--r-lg);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .event .ic {
+        width: 58px;
+        height: 58px;
+        border-radius: 22px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 46, 46, 0.1);
+        border: 1px solid rgba(255, 46, 46, 0.18);
+      }
+
+      .event .ic svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .event strong {
+        display: block;
+        margin: 0;
+        font-size: 15px;
+      }
+
+      .event small {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-weight: 650;
+      }
+
+      .event time {
+        font-weight: 950;
+        font-size: 18px;
+        color: rgba(234, 242, 247, 0.78);
+      }
+
+      /* Settings */
+      .setting {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 14px;
+        border-radius: var(--r-lg);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .setting + .setting {
+        margin-top: 12px;
+      }
+
+      .setting strong {
+        display: block;
+        font-size: 15px;
+      }
+
+      .setting span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-weight: 650;
+        font-size: 13px;
+      }
+
+      .toggle {
+        width: 76px;
+        height: 40px;
+        border-radius: 999px;
+        background: rgba(234, 242, 247, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        position: relative;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background 160ms var(--ease), border-color 160ms var(--ease);
+      }
+
+      .toggle::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        top: 4px;
+        left: 4px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+        transition: transform 160ms var(--ease);
+      }
+
+      .toggle[aria-checked="true"] {
+        background: rgba(24, 184, 156, 0.35);
+        border-color: rgba(24, 184, 156, 0.55);
+      }
+
+      .toggle[aria-checked="true"]::after {
+        transform: translateX(36px);
+      }
+
+      /* Mobile */
+      .bottom {
+        display: none;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        border-radius: 999px;
+        padding: 10px;
+        background: rgba(10, 25, 35, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(18px);
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .bottom button {
+        flex: 1;
+        border: 0;
+        cursor: pointer;
+        background: transparent;
+        color: rgba(234, 242, 247, 0.8);
+        border-radius: 999px;
+        padding: 10px 10px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .bottom button[aria-current="page"] {
+        background: rgba(24, 184, 156, 0.18);
+        color: var(--text);
+      }
+
+      .bottom svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      @media (max-width: 980px) {
+        .app-wrap {
+          grid-template-columns: 1fr;
+          min-height: 720px;
+        }
+        .rail {
+          display: none;
+        }
+        .bottom {
+          display: flex;
+        }
+        .main {
+          padding-bottom: 92px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .radar {
+          grid-column: 1 / -1;
+          grid-template-columns: 1fr;
+        }
+        .alert {
+          grid-template-columns: 64px 1fr;
+        }
+        .alert time {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="splash" class="screen">
+      <div class="splash-card glass">
+        <img class="logo" src="assets/byts-logo.jpg" alt="BYTS" />
+        <h1>BYTS Command Center</h1>
+        <p>Bireysel Yasam Takip Sistemi</p>
+        <div class="loader" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
+
+    <section id="login" class="screen hidden">
+      <div class="login-card glass">
+        <div class="login-top">
+          <img class="logo" src="assets/byts-logo.jpg" alt="BYTS Logo" />
+          <h2>Kullanici Giris Ekrani</h2>
+          <span>Guvenli izleme paneline baglanin</span>
+        </div>
+        <div class="fields">
+          <label class="field">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+            </svg>
+            <input id="username" type="text" autocomplete="username" placeholder="Kullanici Adi" />
+          </label>
+          <label class="field">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M17 11H7a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <input id="password" type="password" autocomplete="current-password" placeholder="Sifre" />
+          </label>
+        </div>
+        <div class="login-actions">
+          <button id="loginBtn" class="btn btn-primary" type="button">GIRIS YAP</button>
+          <div class="login-help">
+            <button id="forgotBtn" class="btn btn-ghost" type="button">Sifremi Unuttum?</button>
+            <button id="createBtn" class="btn btn-ghost" type="button">Hesap Olustur</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="app" class="screen hidden" aria-label="BYTS Panel">
+      <div class="app-wrap glass">
+        <aside class="rail" aria-label="Navigasyon">
+          <div class="brand-dot" aria-hidden="true"><img src="assets/byts-logo.jpg" alt="" /></div>
+          <button type="button" data-view="dashboard" aria-current="page" title="Panel">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 13h7V4H4v9Zm9 7h7V4h-7v16ZM4 20h7v-5H4v5Z" fill="currentColor" />
+            </svg>
+          </button>
+          <button type="button" data-view="history" aria-current="false" title="Gecmis">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 2h10a2 2 0 0 1 2 2v18l-7-3-7 3V4a2 2 0 0 1 2-2Z" fill="currentColor" />
+            </svg>
+          </button>
+          <button type="button" data-view="settings" aria-current="false" title="Ayarlar">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" fill="currentColor" />
+              <path
+                d="M19.4 13a7.6 7.6 0 0 0 0-2l2-1.2-2-3.4-2.3.5a7.7 7.7 0 0 0-1.7-1L15 3h-6l-.4 2.9a7.7 7.7 0 0 0-1.7 1L4.6 6.4l-2 3.4L4.6 11a7.6 7.6 0 0 0 0 2l-2 1.2 2 3.4 2.3-.5a7.7 7.7 0 0 0 1.7 1L9 21h6l.4-2.9a7.7 7.7 0 0 0 1.7-1l2.3.5 2-3.4L19.4 13Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <div class="spacer"></div>
+          <button id="logoutBtn" class="logout" type="button" title="Cikis">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M10 17l-1 4h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H9l1 4"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path d="M15 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M6 9l-3 3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </aside>
+
+        <main class="main">
+          <header class="top">
+            <div class="title">
+              <h1 id="title">Izleme Paneli</h1>
+              <p id="subtitle">Anlik veriler ve kritik uyarilar.</p>
+            </div>
+            <div class="status" id="clock">Canli</div>
+          </header>
+
+          <section id="view-dashboard" class="view active" aria-label="Dashboard">
+            <div class="grid">
+              <div class="alert" role="alert">
+                <div class="badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2 1 21h22L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M12 9v5" stroke="white" stroke-width="2" stroke-linecap="round" />
+                    <path d="M12 17h.01" stroke="white" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>UYARI</strong>
+                  <span>Ani Dusme Algilandi. Hemen kontrol edin.</span>
+                </div>
+                <time id="alertTime" datetime="12:15">12:15</time>
+              </div>
+
+              <div class="panel tile" aria-label="Sicaklik">
+                <h3>Ortam Sicakligi</h3>
+                <div class="value">
+                  <strong id="tempVal">25</strong>
+                  <small>&deg;C</small>
+                </div>
+                <div class="meta" id="tempMeta">Normal</div>
+              </div>
+
+              <div class="panel tile" aria-label="Kapi">
+                <h3>Kapi Durumu</h3>
+                <div class="value">
+                  <strong id="doorVal" style="font-size: 34px; letter-spacing: -0.03em;">KAPALI</strong>
+                </div>
+                <div class="meta" id="doorMeta">Guvenli</div>
+              </div>
+
+              <div class="panel tile" aria-label="Gaz">
+                <h3>Gaz ve Ocak</h3>
+                <div class="value">
+                  <strong id="gasVal" style="font-size: 34px; letter-spacing: -0.03em;">NORMAL</strong>
+                </div>
+                <div class="meta" id="gasMeta">Tehdit Yok</div>
+              </div>
+
+              <div class="radar" aria-label="Hareket">
+                <div class="scope" aria-hidden="true"></div>
+                <div class="legend">
+                  <div class="row">
+                    <strong>Hareket</strong>
+                    <span id="motionVal">NORMAL</span>
+                  </div>
+                  <div class="row">
+                    <strong>Son Ping</strong>
+                    <span id="pingVal">2s</span>
+                  </div>
+                  <div class="row">
+                    <strong>Bolge</strong>
+                    <span id="zoneVal">Salon</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="view-history" class="view" aria-label="History">
+            <div class="list">
+              <div class="event">
+                <div class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M10 14.8V5a2 2 0 0 1 4 0v9.8a3.5 3.5 0 1 1-4 0Z"
+                      stroke="#ff2e2e"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                    <path d="M12 11v6" stroke="#ff2e2e" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Yuksek Sicaklik Tespit Edildi</strong>
+                  <small>Ortam degeri esik seviyenin uzerine cikti.</small>
+                </div>
+                <time datetime="15:10">15:10</time>
+              </div>
+
+              <div class="event">
+                <div class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="15" cy="5" r="2" fill="#ff2e2e" />
+                    <path
+                      d="M13 21l1-6-2-2-3 3-2-1 4-7 3 1 2 3 2 1"
+                      stroke="#ff2e2e"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Yere Dusme Algilandi</strong>
+                  <small>Kritik hareket kalibi nedeniyle uyari olustu.</small>
+                </div>
+                <time datetime="12:15">12:15</time>
+              </div>
+
+              <div class="event">
+                <div class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2c3 4 1 6 0 7-1 1-2 2-2 4a4 4 0 0 0 8 0c0-4-4-6-6-11Z" fill="#ff2e2e" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Ocak Acik Olabilir</strong>
+                  <small>Gaz sensoru kisa sureli uyari verdi.</small>
+                </div>
+                <time datetime="08:30">08:30</time>
+              </div>
+
+              <div class="event">
+                <div class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 3h10v18H7V3Z" stroke="#ff2e2e" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M13.5 12h.01" stroke="#ff2e2e" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Kapi Acildi ve Kapandi</strong>
+                  <small>Giris noktasinda hareket kaydi olustu.</small>
+                </div>
+                <time datetime="14:35">14:35</time>
+              </div>
+
+              <div class="event">
+                <div class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 3a6 6 0 0 0-3 11v3h6v-3a6 6 0 0 0-3-11Z"
+                      stroke="#ff2e2e"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                    <path d="M9 21h6" stroke="#ff2e2e" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div>
+                  <strong>Karanlik Ortamda Hareket Algilandi</strong>
+                  <small>Gece modu siradisi aktiviteyi kaydetti.</small>
+                </div>
+                <time datetime="21:00">21:00</time>
+              </div>
+            </div>
+          </section>
+
+          <section id="view-settings" class="view" aria-label="Settings">
+            <div class="setting">
+              <div>
+                <strong>Ani Dusme Bildirimi</strong>
+                <span>Kritik durumlarda anlik uyari gonder.</span>
+              </div>
+              <button class="toggle" type="button" aria-checked="true" aria-label="Ani Dusme Bildirimi"></button>
+            </div>
+            <div class="setting">
+              <div>
+                <strong>Gaz Kacagi Bildirimi</strong>
+                <span>Gaz riski tespit edilince uyari gonder.</span>
+              </div>
+              <button class="toggle" type="button" aria-checked="true" aria-label="Gaz Kacagi Bildirimi"></button>
+            </div>
+            <div class="setting">
+              <div>
+                <strong>Kapi Acik Kalma Uyarisi</strong>
+                <span>Kapi acik kalirsa bildirim gonder.</span>
+              </div>
+              <button class="toggle" type="button" aria-checked="false" aria-label="Kapi Acik Kalma Uyarisi"></button>
+            </div>
+            <div class="setting">
+              <div>
+                <strong>Hareket Bildirimi</strong>
+                <span>Beklenmeyen hareketleri raporla.</span>
+              </div>
+              <button class="toggle" type="button" aria-checked="true" aria-label="Hareket Bildirimi"></button>
+            </div>
+            <div class="setting">
+              <div>
+                <strong>Sicaklik Bildirimi</strong>
+                <span>Sicaklik esigi asilirsa uyari gonder.</span>
+              </div>
+              <button class="toggle" type="button" aria-checked="true" aria-label="Sicaklik Bildirimi"></button>
+            </div>
+          </section>
+        </main>
+      </div>
+    </section>
+
+    <nav id="bottom" class="bottom hidden" aria-label="Alt Menu">
+      <button type="button" data-view="dashboard" aria-current="page" title="Panel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 13h7V4H4v9Zm9 7h7V4h-7v16ZM4 20h7v-5H4v5Z" fill="currentColor" />
+        </svg>
+        Panel
+      </button>
+      <button type="button" data-view="history" aria-current="false" title="Gecmis">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 2h10a2 2 0 0 1 2 2v18l-7-3-7 3V4a2 2 0 0 1 2-2Z" fill="currentColor" />
+        </svg>
+        Gecmis
+      </button>
+      <button type="button" data-view="settings" aria-current="false" title="Ayarlar">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" fill="currentColor" />
+          <path
+            d="M19.4 13a7.6 7.6 0 0 0 0-2l2-1.2-2-3.4-2.3.5a7.7 7.7 0 0 0-1.7-1L15 3h-6l-.4 2.9a7.7 7.7 0 0 0-1.7 1L4.6 6.4l-2 3.4L4.6 11a7.6 7.6 0 0 0 0 2l-2 1.2 2 3.4 2.3-.5a7.7 7.7 0 0 0 1.7 1L9 21h6l.4-2.9a7.7 7.7 0 0 0 1.7-1l2.3.5 2-3.4L19.4 13Z"
+            fill="currentColor"
+          />
+        </svg>
+        Ayar
+      </button>
+    </nav>
+
+    <script>
+      const splash = document.getElementById("splash");
+      const login = document.getElementById("login");
+      const app = document.getElementById("app");
+      const bottom = document.getElementById("bottom");
+
+      const title = document.getElementById("title");
+      const subtitle = document.getElementById("subtitle");
+      const clock = document.getElementById("clock");
+
+      const views = {
+        dashboard: document.getElementById("view-dashboard"),
+        history: document.getElementById("view-history"),
+        settings: document.getElementById("view-settings"),
+      };
+
+      const meta = {
+        dashboard: { title: "Izleme Paneli", subtitle: "Anlik veriler ve kritik uyarilar." },
+        history: { title: "Uyari ve Olay Gecmisi", subtitle: "Sistem tarafindan kaydedilen son olaylar." },
+        settings: { title: "Bildirim Ayarlari", subtitle: "Hangi bildirimlerin aktif olacagini secin." },
+      };
+
+      function setCurrentNav(view) {
+        document.querySelectorAll("[data-view]").forEach((btn) => {
+          const isCurrent = btn.getAttribute("data-view") === view;
+          btn.setAttribute("aria-current", isCurrent ? "page" : "false");
+        });
+      }
+
+      function showView(view) {
+        Object.entries(views).forEach(([key, el]) => el.classList.toggle("active", key === view));
+        title.textContent = meta[view].title;
+        subtitle.textContent = meta[view].subtitle;
+        setCurrentNav(view);
+      }
+
+      function loginNow() {
+        const u = (document.getElementById("username").value || "").trim();
+        const p = (document.getElementById("password").value || "").trim();
+        if (!u || !p) {
+          alert("Lutfen kullanici adi ve sifre girin.");
+          return;
+        }
+        login.classList.add("hidden");
+        app.classList.remove("hidden");
+        bottom.classList.remove("hidden");
+        showView("dashboard");
+      }
+
+      function logout() {
+        app.classList.add("hidden");
+        bottom.classList.add("hidden");
+        login.classList.remove("hidden");
+        document.getElementById("password").value = "";
+      }
+
+      // Splash -> Login
+      window.setTimeout(() => {
+        splash.classList.add("hidden");
+        login.classList.remove("hidden");
+        document.getElementById("username").focus();
+      }, 850);
+
+      document.getElementById("loginBtn").addEventListener("click", loginNow);
+      document.getElementById("logoutBtn").addEventListener("click", logout);
+      document.getElementById("forgotBtn").addEventListener("click", () => alert("Demo: sifre yenileme akisi backend ile eklenir."));
+      document.getElementById("createBtn").addEventListener("click", () => alert("Demo: hesap olusturma akisi backend ile eklenir."));
+
+      document.querySelectorAll("button[data-view]").forEach((btn) => {
+        btn.addEventListener("click", () => showView(btn.getAttribute("data-view")));
+      });
+
+      document.querySelectorAll(".toggle").forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          const checked = toggle.getAttribute("aria-checked") === "true";
+          toggle.setAttribute("aria-checked", String(!checked));
+        });
+      });
+
+      // Tiny live demo updates (optional visuals)
+      const tempVal = document.getElementById("tempVal");
+      const tempMeta = document.getElementById("tempMeta");
+      const doorVal = document.getElementById("doorVal");
+      const doorMeta = document.getElementById("doorMeta");
+      const gasVal = document.getElementById("gasVal");
+      const gasMeta = document.getElementById("gasMeta");
+      const motionVal = document.getElementById("motionVal");
+      const pingVal = document.getElementById("pingVal");
+      const zoneVal = document.getElementById("zoneVal");
+
+      const zones = ["Salon", "Mutfak", "Yatak Odasi", "Banyo", "Koridor"];
+      let ping = 2;
+      let t = 25;
+      let doorOpen = false;
+      let gasOk = true;
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function tickClock() {
+        const d = new Date();
+        clock.textContent = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+      }
+
+      function updateDemo() {
+        t = Math.max(18, Math.min(35, t + (Math.random() - 0.5) * 0.9));
+        tempVal.textContent = Math.round(t);
+        tempMeta.textContent = t >= 30 ? "Dikkat" : "Normal";
+        tempMeta.style.color = t >= 30 ? "rgba(255, 139, 61, 0.95)" : "rgba(234, 242, 247, 0.75)";
+
+        if (Math.random() < 0.07) doorOpen = !doorOpen;
+        doorVal.textContent = doorOpen ? "ACIK" : "KAPALI";
+        doorMeta.textContent = doorOpen ? "Dikkat" : "Guvenli";
+        doorMeta.style.color = doorOpen ? "rgba(255, 139, 61, 0.95)" : "rgba(234, 242, 247, 0.75)";
+
+        if (Math.random() < 0.03) gasOk = !gasOk;
+        gasVal.textContent = gasOk ? "NORMAL" : "RISK";
+        gasMeta.textContent = gasOk ? "Tehdit Yok" : "Kontrol Et";
+        gasMeta.style.color = gasOk ? "rgba(234, 242, 247, 0.75)" : "rgba(255, 46, 46, 0.95)";
+
+        ping = Math.max(1, Math.min(9, ping + (Math.random() < 0.5 ? 1 : -1)));
+        pingVal.textContent = ping + "s";
+
+        if (Math.random() < 0.12) {
+          const z = zones[Math.floor(Math.random() * zones.length)];
+          zoneVal.textContent = z;
+        }
+
+        if (Math.random() < 0.18) {
+          motionVal.textContent = "AKTIF";
+          window.setTimeout(() => (motionVal.textContent = "NORMAL"), 650);
+        }
+      }
+
+      tickClock();
+      window.setInterval(tickClock, 10_000);
+      window.setInterval(updateDemo, 1_500);
+    </script>
+  </body>
+</html>
+
