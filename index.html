@@ -540,12 +540,23 @@
         display: grid;
         place-items: center;
         text-align: center;
-        min-height: 180px;
+        min-height: 170px;
+      }
+
+      .sensor-wide {
+        grid-column: 1 / -1;
       }
 
       .sensor svg {
         width: 34px;
         height: 34px;
+        margin-bottom: 10px;
+      }
+
+      .sensor-emoji {
+        display: block;
+        font-size: 34px;
+        line-height: 1;
         margin-bottom: 10px;
       }
 
@@ -560,7 +571,7 @@
       .sensor .label {
         display: block;
         margin-top: 10px;
-        color: #6f6f6f;
+        color: #23994f;
         font-size: 13px;
         font-weight: 700;
       }
@@ -779,7 +790,7 @@
 
       <section id="auth" class="auth hidden" aria-label="Kullanici Girisi">
         <div class="auth-inner">
-          <div class="auth-title">Vasi Giris Paneli</div>
+          <div class="auth-title">Kullanici Giris Ekrani</div>
           <div class="auth-logo">
             <img src="assets/byts-logo.jpg" alt="BYTS Logo" />
             <div class="auth-subtitle">Bireysel Yasam Takip Sistemi</div>
@@ -829,8 +840,8 @@
           </div>
 
           <div id="forgotPanel" class="register-panel hidden" aria-label="Sifre Sifirlama Formu">
-            <h3>Sifre Yenileme</h3>
-            <p>Kayitli bilgilerle kimligini dogrula. Sistem gereken durumda SMS veya e-posta kodu kullanir, uygun oldugunda guvenli sifre yenileme adimina dogrudan gecis yapar.</p>
+            <h3>Sifremi Unuttum</h3>
+            <p>Once kayitli SMS veya e-posta adresine gidecek kodu iste, sonra gelen kodla yeni sifreni belirle.</p>
 
             <div id="forgotStepRequest">
               <div class="register-grid">
@@ -868,7 +879,7 @@
               <div id="forgotMeta" class="forgot-meta" aria-live="polite"></div>
 
               <div class="register-grid">
-                <div id="forgotCodeField" class="field full">
+                <div class="field full">
                   <div class="field-row no-icon">
                     <input id="forgotCode" type="text" placeholder="6 Haneli Dogrulama Kodu" inputmode="numeric" autocomplete="one-time-code" />
                   </div>
@@ -892,8 +903,8 @@
               <div id="forgotMessage" class="register-message" aria-live="polite"></div>
               <div class="action-group">
                 <button id="forgotCancelBtn" class="btn btn-ghost" type="button">Kapat</button>
-                <button id="forgotRequestBtn" class="btn btn-primary" type="button">DOGRULAMAYI BASLAT</button>
-                <button id="forgotResendBtn" class="btn btn-ghost hidden" type="button">TEKRAR DOGRULA</button>
+                <button id="forgotRequestBtn" class="btn btn-primary" type="button">KOD GONDER</button>
+                <button id="forgotResendBtn" class="btn btn-ghost hidden" type="button">KODU YENIDEN GONDER</button>
                 <button id="forgotSubmitBtn" class="btn btn-primary hidden" type="button">SIFREYI GUNCELLE</button>
               </div>
             </div>
@@ -1038,58 +1049,46 @@
             </div>
 
             <div class="grid" aria-label="Sensor Kartlari">
-              <article class="sensor" aria-label="Ortam Sicakligi">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M10 14.8V5a2 2 0 0 1 4 0v9.8a3.5 3.5 0 1 1-4 0Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linejoin="round"
-                  />
-                  <path d="M12 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                </svg>
-                <span class="value">25&deg;C</span>
-                <span class="label">Ortam Sicakligi</span>
+              <article class="sensor" aria-label="Adim Bilgisi">
+                <span class="sensor-emoji" aria-hidden="true">🚶</span>
+                <span class="value">5342 adim</span>
+                <span class="label">Hedefe ulasildi</span>
+              </article>
+
+              <article class="sensor" aria-label="Kalp Atisi">
+                <span class="sensor-emoji" aria-hidden="true">❤️</span>
+                <span class="value">102 BPM</span>
+                <span class="label">Yuksek</span>
+              </article>
+
+              <article class="sensor" aria-label="Sistem Durumu">
+                <span class="sensor-emoji" aria-hidden="true">🔥</span>
+                <span class="value">AKTIF</span>
+                <span class="label">Sistem Aktif</span>
+              </article>
+
+              <article class="sensor" aria-label="Durum Ozeti">
+                <span class="sensor-emoji" aria-hidden="true">⏱️</span>
+                <span class="value">NORMAL</span>
+                <span class="label">Sistem Stabil</span>
               </article>
 
               <article class="sensor" aria-label="Kapi Durumu">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M7 3h10v18H7V3Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linejoin="round"
-                  />
-                  <path d="M13.5 12h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-                </svg>
+                <span class="sensor-emoji" aria-hidden="true">🚪</span>
                 <span class="value">KAPALI</span>
                 <span class="label">Kapi Durumu</span>
               </article>
 
-              <article class="sensor" aria-label="Gaz ve Ocak">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M12 2c3 4 1 6 0 7-1 1-2 2-2 4a4 4 0 0 0 8 0c0-4-4-6-6-11Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                <span class="value">NORMAL</span>
-                <span class="label">Gaz ve Ocak</span>
+              <article class="sensor" aria-label="Oda Sicakligi">
+                <span class="sensor-emoji" aria-hidden="true">🌡️</span>
+                <span class="value">24&deg;C</span>
+                <span class="label">Oda Sicakligi</span>
               </article>
 
-              <article class="sensor" aria-label="Hareket">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <circle cx="15" cy="5" r="2" fill="currentColor" />
-                  <path
-                    d="M13 21l1-6-2-2-3 3-2-1 4-7 3 1 2 3 2 1"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <span class="value">NORMAL</span>
-                <span class="label">Hareket</span>
+              <article class="sensor sensor-wide" aria-label="Isik Durumu">
+                <span class="sensor-emoji" aria-hidden="true">💡</span>
+                <span class="value">ACIK</span>
+                <span class="label">Isik Durumu</span>
               </article>
             </div>
           </section>

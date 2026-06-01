@@ -30,11 +30,6 @@ const APP_NAME = String(process.env.APP_NAME || "BYTS").trim() || "BYTS";
 const PUBLIC_BASE_URL = trimTrailingSlash(process.env.PUBLIC_BASE_URL || "");
 const ROOT_DIR = __dirname;
 const DATA_DIR = path.join(ROOT_DIR, "data");
-const ROOT_STATE_FILE = path.join(ROOT_DIR, "state.json");
-const ROOT_SETTINGS_FILE = path.join(ROOT_DIR, "settings.json");
-const ROOT_EVENTS_FILE = path.join(ROOT_DIR, "events.json");
-const ROOT_USERS_FILE = path.join(ROOT_DIR, "users.json");
-const ROOT_RESET_REQUESTS_FILE = path.join(ROOT_DIR, "reset-requests.json");
 const STATE_FILE = path.join(DATA_DIR, "state.json");
 const SETTINGS_FILE = path.join(DATA_DIR, "settings.json");
 const EVENTS_FILE = path.join(DATA_DIR, "events.json");
@@ -45,8 +40,8 @@ const MAX_EVENTS = 250;
 const RESET_CODE_TTL_MS = 10 * 60 * 1000;
 const RESET_CODE_MAX_ATTEMPTS = 5;
 const RESET_REQUEST_COOLDOWN_MS = Number(process.env.RESET_REQUEST_COOLDOWN_MS || 60_000);
-const ALLOW_ASSISTED_RESET = parseEnvBoolean(
-  process.env.ALLOW_ASSISTED_RESET ?? process.env.ALLOW_DEMO_RESET_CODES,
+const ALLOW_DEMO_RESET_CODES = parseEnvBoolean(
+  process.env.ALLOW_DEMO_RESET_CODES,
   NODE_ENV !== "production",
 );
 const RESET_SMS_WEBHOOK_URL = String(process.env.RESET_SMS_WEBHOOK_URL || "").trim();
@@ -125,13 +120,9 @@ function generateResetCode() {
   return String(Math.floor(100000 + Math.random() * 900000));
 }
 
-function generateResetGrant() {
-  return crypto.randomBytes(24).toString("base64url");
-}
-
 function getResetProviderStatus() {
   return {
-    assistedResetEnabled: ALLOW_ASSISTED_RESET,
+    demoCodesEnabled: ALLOW_DEMO_RESET_CODES,
     emailConfigured: Boolean(
       RESET_EMAIL_WEBHOOK_URL || (RESEND_API_KEY && RESEND_FROM_EMAIL),
     ),
@@ -294,11 +285,12 @@ async function deliverResetCode({ channel, code, deliveryHint, expiresAt, user }
     }
   }
 
-  if (ALLOW_ASSISTED_RESET) {
+  if (ALLOW_DEMO_RESET_CODES) {
+    console.log(`[BYTS demo reset code] ${user.username}/${channel}: ${code}`);
     return {
-      deliveryMode: "verified",
-      provider: "identity",
-      resetGrantToken: generateResetGrant(),
+      deliveryMode: "demo",
+      previewCode: code,
+      provider: "demo",
     };
   }
 
@@ -325,36 +317,6 @@ function writeJson(filePath, data) {
   const tempPath = `${filePath}.tmp`;
   fs.writeFileSync(tempPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
   fs.renameSync(tempPath, filePath);
-}
-
-function readJsonIfExists(filePath) {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, "utf8"));
-  } catch (error) {
-    return undefined;
-  }
-}
-
-function bootstrapJsonFile(primaryPath, fallback, legacyPaths = []) {
-  const primaryData = readJsonIfExists(primaryPath);
-  if (primaryData !== undefined) {
-    return primaryData;
-  }
-
-  for (const legacyPath of legacyPaths) {
-    const legacyData = readJsonIfExists(legacyPath);
-    if (legacyData === undefined) {
-      continue;
-    }
-
-    writeJson(primaryPath, legacyData);
-    console.log(
-      `[bootstrap] ${path.basename(legacyPath)} dosyasi ${path.relative(ROOT_DIR, primaryPath)} konumuna tasindi.`,
-    );
-    return legacyData;
-  }
-
-  return fallback;
 }
 
 function clampNumber(value, fallback) {
@@ -398,7 +360,7 @@ function buildDefaultSettings() {
       temperatureHighC: 30,
     },
     caretaker: {
-      name: "Birincil Vasi",
+      name: "Vasi Kullanici",
       phone: "+90 555 000 00 00",
       relation: "Aile Yakini",
     },
@@ -439,16 +401,22 @@ function buildDefaultState() {
   return {
     activeAlerts: [],
     current: {
+      braceletBatteryPct: 84,
       cameraConfidence: 0.04,
       doorOpen: false,
       doorOpenedAt: null,
       fallDetected: false,
       gasPpm: 110,
+      heartRateBpm: 102,
       humidity: 46,
       lightLevelLux: 210,
+      lightOn: true,
       motionDetected: false,
       personExited: false,
       smokePpm: 8,
+      spo2: 97,
+      stepCount: 5342,
+      stepGoal: 5000,
       stoveOn: false,
       temperatureC: 24.2,
     },
@@ -504,13 +472,13 @@ function buildSeedUsers() {
   return [
     {
       createdAt: isoNow(),
-      displayName: "Birincil Vasi",
-      email: "vasi@bytswebappcom.website",
-      passwordHash: hashPassword("Byts2026!"),
+      displayName: "Demo Vasi",
+      email: "demo@byts.local",
+      passwordHash: hashPassword("1234"),
       phone: "+90 555 000 00 00",
       relation: "Aile Yakini",
       role: "caretaker",
-      username: "vasi",
+      username: "demo",
     },
   ];
 }
@@ -561,16 +529,25 @@ function normalizeState(rawState) {
   return {
     activeAlerts: Array.isArray(rawState?.activeAlerts) ? rawState.activeAlerts : defaults.activeAlerts,
     current: {
+      braceletBatteryPct: clampNumber(
+        rawState?.current?.braceletBatteryPct,
+        defaults.current.braceletBatteryPct,
+      ),
       cameraConfidence: clampNumber(rawState?.current?.cameraConfidence, defaults.current.cameraConfidence),
       doorOpen: asBoolean(rawState?.current?.doorOpen, defaults.current.doorOpen),
       doorOpenedAt: rawState?.current?.doorOpenedAt || defaults.current.doorOpenedAt,
       fallDetected: asBoolean(rawState?.current?.fallDetected, defaults.current.fallDetected),
       gasPpm: clampNumber(rawState?.current?.gasPpm, defaults.current.gasPpm),
+      heartRateBpm: clampNumber(rawState?.current?.heartRateBpm, defaults.current.heartRateBpm),
       humidity: clampNumber(rawState?.current?.humidity, defaults.current.humidity),
       lightLevelLux: clampNumber(rawState?.current?.lightLevelLux, defaults.current.lightLevelLux),
+      lightOn: asBoolean(rawState?.current?.lightOn, defaults.current.lightOn),
       motionDetected: asBoolean(rawState?.current?.motionDetected, defaults.current.motionDetected),
       personExited: asBoolean(rawState?.current?.personExited, defaults.current.personExited),
       smokePpm: clampNumber(rawState?.current?.smokePpm, defaults.current.smokePpm),
+      spo2: clampNumber(rawState?.current?.spo2, defaults.current.spo2),
+      stepCount: clampNumber(rawState?.current?.stepCount, defaults.current.stepCount),
+      stepGoal: clampNumber(rawState?.current?.stepGoal, defaults.current.stepGoal),
       stoveOn: asBoolean(rawState?.current?.stoveOn, defaults.current.stoveOn),
       temperatureC: clampNumber(rawState?.current?.temperatureC, defaults.current.temperatureC),
     },
@@ -630,7 +607,7 @@ function normalizeUsers(rawUsers) {
     createdAt: user.createdAt || isoNow(),
     displayName: String(user.displayName || user.username || "Vasi Kullanici"),
     email: String(user.email || "").trim(),
-    passwordHash: String(user.passwordHash || hashPassword("Byts2026!")),
+    passwordHash: String(user.passwordHash || hashPassword("1234")),
     phone: String(user.phone || ""),
     relation: String(user.relation || "Aile Yakini"),
     role: String(user.role || "caretaker"),
@@ -652,14 +629,12 @@ function normalizeResetRequests(rawRequests) {
       createdAt: request.createdAt || isoNow(),
       deliveryHint: String(request.deliveryHint || ""),
       expiresAt: request.expiresAt || isoNow(),
-      grantHash: String(request.grantHash || ""),
-      verificationMode: request.verificationMode === "identity" ? "identity" : "code",
       username: String(request.username || "").trim(),
     }))
     .filter(
       (request) =>
         request.username &&
-        (request.codeHash || request.grantHash) &&
+        request.codeHash &&
         request.attemptsLeft > 0 &&
         new Date(request.expiresAt).getTime() > now,
     );
@@ -713,20 +688,12 @@ function upsertResetRequest(request) {
 
 ensureDataDir();
 
-let settings = normalizeSettings(
-  bootstrapJsonFile(SETTINGS_FILE, buildDefaultSettings(), [ROOT_SETTINGS_FILE]),
-);
-let state = normalizeState(
-  bootstrapJsonFile(STATE_FILE, buildDefaultState(), [ROOT_STATE_FILE]),
-);
-let events = normalizeEvents(
-  bootstrapJsonFile(EVENTS_FILE, buildSeedEvents(), [ROOT_EVENTS_FILE]),
-);
-let users = normalizeUsers(
-  bootstrapJsonFile(USERS_FILE, buildSeedUsers(), [ROOT_USERS_FILE]),
-);
+let settings = normalizeSettings(readJson(SETTINGS_FILE, buildDefaultSettings()));
+let state = normalizeState(readJson(STATE_FILE, buildDefaultState()));
+let events = normalizeEvents(readJson(EVENTS_FILE, buildSeedEvents()));
+let users = normalizeUsers(readJson(USERS_FILE, buildSeedUsers()));
 let resetRequests = normalizeResetRequests(
-  bootstrapJsonFile(RESET_REQUESTS_FILE, buildSeedResetRequests(), [ROOT_RESET_REQUESTS_FILE]),
+  readJson(RESET_REQUESTS_FILE, buildSeedResetRequests()),
 );
 
 function persistAll() {
@@ -1032,9 +999,33 @@ function ingestPayload(payload) {
     parseReading(readings, ["gasPpm", "gasLevel", "mq2"], state.current.gasPpm),
     state.current.gasPpm,
   );
+  state.current.heartRateBpm = clampNumber(
+    parseReading(readings, ["heartRateBpm", "heartRate", "pulse"], state.current.heartRateBpm),
+    state.current.heartRateBpm,
+  );
   state.current.smokePpm = clampNumber(
     parseReading(readings, ["smokePpm", "smokeLevel", "mq5"], state.current.smokePpm),
     state.current.smokePpm,
+  );
+  state.current.spo2 = clampNumber(
+    parseReading(readings, ["spo2", "bloodOxygen", "oxygenSaturation"], state.current.spo2),
+    state.current.spo2,
+  );
+  state.current.stepCount = clampNumber(
+    parseReading(readings, ["stepCount", "steps", "adim"], state.current.stepCount),
+    state.current.stepCount,
+  );
+  state.current.stepGoal = clampNumber(
+    parseReading(readings, ["stepGoal", "dailyStepGoal"], state.current.stepGoal),
+    state.current.stepGoal,
+  );
+  state.current.braceletBatteryPct = clampNumber(
+    parseReading(
+      readings,
+      ["braceletBatteryPct", "batteryPct", "wearableBattery"],
+      state.current.braceletBatteryPct,
+    ),
+    state.current.braceletBatteryPct,
   );
   state.current.motionDetected = asBoolean(
     parseReading(readings, ["motionDetected", "motion"], state.current.motionDetected),
@@ -1047,6 +1038,10 @@ function ingestPayload(payload) {
   state.current.lightLevelLux = clampNumber(
     parseReading(readings, ["lightLevelLux", "lux", "ldrLux"], state.current.lightLevelLux),
     state.current.lightLevelLux,
+  );
+  state.current.lightOn = asBoolean(
+    parseReading(readings, ["lightOn", "roomLightOn", "lampOn"], state.current.lightLevelLux > settings.thresholds.darkLux),
+    state.current.lightLevelLux > settings.thresholds.darkLux,
   );
   state.current.fallDetected = asBoolean(
     parseReading(readings, ["fallDetected", "fall"], state.current.fallDetected),
@@ -1580,6 +1575,18 @@ async function handleApi(req, res, url) {
       const code = generateResetCode();
       const expiresAt = new Date(Date.now() + RESET_CODE_TTL_MS).toISOString();
       const cooldownUntil = new Date(Date.now() + RESET_REQUEST_COOLDOWN_MS).toISOString();
+
+      upsertResetRequest({
+        attemptsLeft: RESET_CODE_MAX_ATTEMPTS,
+        channel,
+        codeHash: hashPassword(code),
+        createdAt: isoNow(),
+        deliveryHint,
+        expiresAt,
+        username: user.username,
+      });
+      persistAll();
+
       let delivery;
       try {
         delivery = await deliverResetCode({
@@ -1600,31 +1607,14 @@ async function handleApi(req, res, url) {
         return true;
       }
 
-      const verificationMode = delivery.deliveryMode === "live" ? "code" : "identity";
-      upsertResetRequest({
-        attemptsLeft: verificationMode === "code" ? RESET_CODE_MAX_ATTEMPTS : 1,
-        channel,
-        codeHash: verificationMode === "code" ? hashPassword(code) : "",
-        createdAt: isoNow(),
-        deliveryHint,
-        expiresAt,
-        grantHash: delivery.resetGrantToken ? hashPassword(delivery.resetGrantToken) : "",
-        verificationMode,
-        username: user.username,
-      });
-      persistAll();
-
       pushEvent({
         message:
           delivery.deliveryMode === "live"
             ? `${user.displayName} icin ${channelLabel} dogrulama kodu gonderildi.`
-            : `${user.displayName} icin kayitli bilgiler uzerinden kimlik dogrulamasi tamamlandi.`,
+            : `${user.displayName} icin ${channelLabel} dogrulama kodu test modunda olusturuldu.`,
         severity: "info",
         source: "auth",
-        title:
-          delivery.deliveryMode === "live"
-            ? "Dogrulama kodu gonderildi"
-            : "Kimlik dogrulamasi tamamlandi",
+        title: "Dogrulama kodu gonderildi",
         type: "password-reset-requested",
       });
       persistAll();
@@ -1635,16 +1625,14 @@ async function handleApi(req, res, url) {
         deliveryHint,
         deliveryMode: delivery.deliveryMode,
         expiresAt,
-        requiresCode: verificationMode === "code",
-        verificationMode,
         message:
           delivery.deliveryMode === "live"
             ? `Dogrulama kodu ${channelLabel} kanalina gonderildi.`
-            : "Kayitli bilgiler dogrulandi. Guvenli sifre yenileme adimina gecebilirsin.",
+            : `Dogrulama kodu ${channelLabel} icin test modunda hazirlandi.`,
       };
 
-      if (delivery.resetGrantToken) {
-        payload.resetGrantToken = delivery.resetGrantToken;
+      if (delivery.previewCode) {
+        payload.demoCode = delivery.previewCode;
       }
 
       sendJson(res, 200, payload);
@@ -1660,13 +1648,12 @@ async function handleApi(req, res, url) {
       const body = await parseBody(req);
       const username = String(body.username || "").trim();
       const code = String(body.code || "").trim();
-      const grantToken = String(body.grantToken || "").trim();
       const newPassword = String(body.newPassword || "").trim();
       const passwordConfirm = String(body.passwordConfirm || "").trim();
 
-      if (!username || !newPassword || !passwordConfirm) {
+      if (!username || !code || !newPassword || !passwordConfirm) {
         sendJson(res, 400, {
-          message: "Kullanici adi ve yeni sifre alanlari zorunludur.",
+          message: "Kullanici adi, kod ve yeni sifre alanlari zorunludur.",
         });
         return true;
       }
@@ -1696,38 +1683,19 @@ async function handleApi(req, res, url) {
       const resetRequest = findResetRequest(username);
       if (!resetRequest) {
         sendJson(res, 410, {
-          message: "Aktif sifre yenileme oturumu bulunamadi. Once yeni dogrulama iste.",
+          message: "Aktif dogrulama kodu bulunamadi. Once yeni kod iste.",
         });
         return true;
       }
 
-      if (resetRequest.verificationMode === "code") {
-        if (!code) {
-          sendJson(res, 400, {
-            message: "Dogrulama kodunu gir.",
-          });
-          return true;
-        }
-
-        if (hashPassword(code) !== resetRequest.codeHash) {
-          resetRequest.attemptsLeft -= 1;
-          persistAll();
-          sendJson(res, 401, {
-            message:
-              resetRequest.attemptsLeft > 0
-                ? `Dogrulama kodu hatali. Kalan deneme: ${resetRequest.attemptsLeft}`
-                : "Dogrulama kodu gecersiz. Yeni kod iste.",
-          });
-          return true;
-        }
-      } else if (!grantToken || hashPassword(grantToken) !== resetRequest.grantHash) {
+      if (hashPassword(code) !== resetRequest.codeHash) {
         resetRequest.attemptsLeft -= 1;
         persistAll();
         sendJson(res, 401, {
           message:
             resetRequest.attemptsLeft > 0
-              ? `Kimlik dogrulama oturumu gecersiz. Kalan deneme: ${resetRequest.attemptsLeft}`
-              : "Kimlik dogrulama oturumu sonlandi. Yeni dogrulama iste.",
+              ? `Dogrulama kodu hatali. Kalan deneme: ${resetRequest.attemptsLeft}`
+              : "Dogrulama kodu gecersiz. Yeni kod iste.",
         });
         return true;
       }
@@ -1844,7 +1812,7 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, HOST, () => {
   console.log(`BYTS backend hazir: http://${HOST}:${PORT}`);
   console.log(
-    `Reset servisleri -> guvenli_yedek:${getResetProviderStatus().assistedResetEnabled ? "acik" : "kapali"} | email:${
+    `Reset servisleri -> demo:${getResetProviderStatus().demoCodesEnabled ? "acik" : "kapali"} | email:${
       getResetProviderStatus().emailConfigured ? "hazir" : "eksik"
     } | sms:${getResetProviderStatus().smsConfigured ? "hazir" : "eksik"}`,
   );

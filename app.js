@@ -22,7 +22,6 @@ const refs = {
   forgotCancelBtn: document.getElementById("forgotCancelBtn"),
   forgotChannel: document.getElementById("forgotChannel"),
   forgotCode: document.getElementById("forgotCode"),
-  forgotCodeField: document.getElementById("forgotCodeField"),
   forgotEmail: document.getElementById("forgotEmail"),
   forgotEmailField: document.getElementById("forgotEmailField"),
   forgotLink: document.getElementById("forgotLink"),
@@ -86,10 +85,13 @@ const pageMeta = {
 };
 
 const sensorRefs = {
+  steps: pickSensor("[aria-label='Adim Bilgisi']"),
+  heart: pickSensor("[aria-label='Kalp Atisi']"),
+  system: pickSensor("[aria-label='Sistem Durumu']"),
+  stability: pickSensor("[aria-label='Durum Ozeti']"),
   door: pickSensor("[aria-label='Kapi Durumu']"),
-  gas: pickSensor("[aria-label='Gaz ve Ocak']"),
-  motion: pickSensor("[aria-label='Hareket']"),
-  temperature: pickSensor("[aria-label='Ortam Sicakligi']"),
+  temperature: pickSensor("[aria-label='Oda Sicakligi']"),
+  light: pickSensor("[aria-label='Isik Durumu']"),
 };
 
 function pickSensor(selector) {
@@ -230,22 +232,10 @@ function renderForgotMeta() {
   const cooldownUntilMs = new Date(appState.forgotRequest.cooldownUntil || 0).getTime();
   const parts = [];
 
-  if (appState.forgotRequest.verificationMode === "identity") {
-    parts.push("Kimlik dogrulama oturumu aktif.");
-  }
-
   if (Number.isFinite(expiresAtMs) && expiresAtMs > now) {
-    parts.push(
-      appState.forgotRequest.requiresCode === false
-        ? `Dogrulama oturumu ${formatRemainingTime(expiresAtMs - now)} boyunca gecerli.`
-        : `Kod ${formatRemainingTime(expiresAtMs - now)} boyunca gecerli.`,
-    );
+    parts.push(`Kod ${formatRemainingTime(expiresAtMs - now)} boyunca gecerli.`);
   } else {
-    parts.push(
-      appState.forgotRequest.requiresCode === false
-        ? "Dogrulama oturumunun suresi doldu. Yeni dogrulama iste."
-        : "Kodun suresi doldu. Yeniden kod iste.",
-    );
+    parts.push("Kodun suresi doldu. Yeniden kod iste.");
   }
 
   if (Number.isFinite(cooldownUntilMs) && cooldownUntilMs > now) {
@@ -311,7 +301,6 @@ function clearForgotForm() {
   refs.forgotPassword.value = "";
   refs.forgotPasswordConfirm.value = "";
   updateForgotChannelFields();
-  updateForgotVerificationFields();
 }
 
 function setForgotStep(step) {
@@ -321,18 +310,12 @@ function setForgotStep(step) {
   refs.forgotRequestBtn.classList.toggle("hidden", showConfirm);
   refs.forgotResendBtn.classList.toggle("hidden", !showConfirm);
   refs.forgotSubmitBtn.classList.toggle("hidden", !showConfirm);
-  updateForgotVerificationFields();
 }
 
 function updateForgotChannelFields() {
   const channel = refs.forgotChannel.value;
   refs.forgotPhoneField.classList.toggle("hidden", channel !== "sms");
   refs.forgotEmailField.classList.toggle("hidden", channel !== "email");
-}
-
-function updateForgotVerificationFields() {
-  const requiresCode = appState.forgotRequest ? appState.forgotRequest.requiresCode !== false : true;
-  refs.forgotCodeField?.classList.toggle("hidden", !requiresCode);
 }
 
 async function api(path, options = {}) {
@@ -411,6 +394,32 @@ function connectivityText() {
   return `${onlineCount}/${devices.length} cihaz aktif`;
 }
 
+function heartRateLabel(bpm) {
+  if (!Number.isFinite(bpm)) {
+    return "--";
+  }
+  if (bpm >= 100) {
+    return "Yuksek";
+  }
+  if (bpm <= 55) {
+    return "Dusuk";
+  }
+  return "Normal";
+}
+
+function stabilityValue(status) {
+  if (status === "critical") {
+    return "KRITIK";
+  }
+  if (status === "warning") {
+    return "RISK";
+  }
+  if (status === "attention") {
+    return "DIKKAT";
+  }
+  return "NORMAL";
+}
+
 function setSensorValue(ref, value, label) {
   if (!ref?.value || !ref?.label) {
     return;
@@ -427,36 +436,54 @@ function renderDashboard() {
 
   const current = snapshot.current;
   const summary = snapshot.summary;
+  const onlineDevices = Object.values(snapshot.devices || {}).filter((device) => device.online).length;
+  const stepCount = Number(current.stepCount || 0);
+  const stepGoal = Math.max(1, Number(current.stepGoal || 5000));
+  const lightIsOn =
+    typeof current.lightOn === "boolean"
+      ? current.lightOn
+      : Number(current.lightLevelLux || 0) > Number(appState.settings?.thresholds?.darkLux || 80);
 
   setSensorValue(
-    sensorRefs.temperature,
-    `${formatNumber(current.temperatureC, 1)}°C`,
-    `Nem ${formatNumber(current.humidity, 0)}% | Esik ${formatNumber(
-      appState.settings?.thresholds?.temperatureHighC,
-      0,
-    )}°C`,
+    sensorRefs.steps,
+    `${formatNumber(stepCount, 0)} adim`,
+    stepCount >= stepGoal ? "Hedefe ulasildi" : `${formatNumber(stepGoal - stepCount, 0)} adim kaldi`,
+  );
+
+  setSensorValue(
+    sensorRefs.heart,
+    `${formatNumber(current.heartRateBpm, 0)} BPM`,
+    heartRateLabel(Number(current.heartRateBpm)),
+  );
+
+  setSensorValue(
+    sensorRefs.system,
+    onlineDevices > 0 ? "AKTIF" : "BEKLIYOR",
+    onlineDevices > 0 ? "Sistem Aktif" : "Baglanti Bekleniyor",
+  );
+
+  setSensorValue(
+    sensorRefs.stability,
+    stabilityValue(summary.overallStatus),
+    summary.overallStatus === "normal" ? "Sistem Stabil" : overallStatusText(summary.overallStatus),
   );
 
   setSensorValue(
     sensorRefs.door,
     current.doorOpen ? "ACIK" : "KAPALI",
-    current.doorOpen
-      ? `Acik kalma ${summary.doorOpenDurationSec || 0} sn`
-      : `Son cikis ${formatTime(summary.lastExitAt)}`,
+    "Kapi Durumu",
   );
 
   setSensorValue(
-    sensorRefs.gas,
-    `${formatNumber(current.gasPpm, 0)} PPM`,
-    `Duman ${formatNumber(current.smokePpm, 0)} | Ocak ${current.stoveOn ? "ACIK" : "KAPALI"}`,
+    sensorRefs.temperature,
+    `${formatNumber(current.temperatureC, 0)}°C`,
+    "Oda Sicakligi",
   );
 
   setSensorValue(
-    sensorRefs.motion,
-    current.motionDetected ? "AKTIF" : "NORMAL",
-    `Isik ${formatNumber(current.lightLevelLux, 0)} lux | Acil isik ${
-      summary.emergencyLightOn ? "ACIK" : "KAPALI"
-    }`,
+    sensorRefs.light,
+    lightIsOn ? "ACIK" : "KAPALI",
+    "Isik Durumu",
   );
 
   refs.headerChip.textContent = overallStatusText(summary.overallStatus);
@@ -780,7 +807,7 @@ async function requestResetCode() {
   }
 
   try {
-    setForgotMessage("Kimlik dogrulamasi baslatiliyor...");
+    setForgotMessage("Dogrulama kodu gonderiliyor...");
     const response = await api("/api/auth/request-reset-code", {
       body: JSON.stringify({
         channel,
@@ -797,29 +824,26 @@ async function requestResetCode() {
       deliveryHint: response.deliveryHint,
       deliveryMode: response.deliveryMode,
       expiresAt: response.expiresAt,
-      grantToken: response.resetGrantToken || "",
-      requiresCode: response.requiresCode !== false,
-      verificationMode: response.verificationMode || (response.requiresCode === false ? "identity" : "code"),
       username,
     };
 
-    const summaryParts =
-      response.requiresCode === false
-        ? [
-            "Kayitli bilgiler basariyla eslestirildi.",
-            "Guvenli sifre yenileme adimina gecildi.",
-          ]
-        : [`${channel === "sms" ? "SMS" : "E-posta"} kodu ${response.deliveryHint} adresine gonderildi.`];
+    const summaryParts = [
+      `${channel === "sms" ? "SMS" : "E-posta"} kodu ${response.deliveryHint} adresine gonderildi.`,
+    ];
+
+    if (response.deliveryMode === "demo" && response.demoCode) {
+      summaryParts.push(`Test modu kodu: ${response.demoCode}`);
+    }
 
     refs.forgotSummary.textContent = summaryParts.join(" ");
     setForgotStep("confirm");
-    setForgotMessage(response.message);
+    setForgotMessage(
+      response.deliveryMode === "demo" && response.demoCode
+        ? `${response.message} Test modu aktif oldugu icin kod ekranda gosterildi.`
+        : response.message,
+    );
     startForgotCountdown();
-    if (appState.forgotRequest.requiresCode === false) {
-      refs.forgotPassword.focus();
-    } else {
-      refs.forgotCode.focus();
-    }
+    refs.forgotCode.focus();
   } catch (error) {
     setForgotMessage(error.message, true);
   }
@@ -831,18 +855,13 @@ async function resetPassword() {
   const newPassword = refs.forgotPassword.value.trim();
   const passwordConfirm = refs.forgotPasswordConfirm.value.trim();
 
-  if (!username || !newPassword || !passwordConfirm) {
-    setForgotMessage("Yeni sifre alanlarini doldur.", true);
+  if (!username || !code || !newPassword || !passwordConfirm) {
+    setForgotMessage("Kod ve yeni sifre alanlarini doldur.", true);
     return;
   }
 
   if (!appState.forgotRequest || appState.forgotRequest.username !== username) {
     setForgotMessage("Once dogrulama kodu iste.", true);
-    return;
-  }
-
-  if (appState.forgotRequest.requiresCode !== false && !code) {
-    setForgotMessage("Dogrulama kodunu gir.", true);
     return;
   }
 
@@ -856,7 +875,6 @@ async function resetPassword() {
     const response = await api("/api/auth/reset-password", {
       body: JSON.stringify({
         code,
-        grantToken: appState.forgotRequest.grantToken || "",
         newPassword,
         passwordConfirm,
         username,
